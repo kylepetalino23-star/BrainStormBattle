@@ -1,0 +1,50 @@
+-- ============================================================
+--  CREATE DATABASE (kung wala pa)
+-- ============================================================
+CREATE DATABASE IF NOT EXISTS game_db;
+USE game_db;
+
+-- ============================================================
+--  DROP EXISTING TABLES (kung may luma)
+-- ============================================================
+DROP TABLE IF EXISTS game_progress;
+DROP TABLE IF EXISTS users;
+
+-- ============================================================
+--  CREATE USERS TABLE
+-- ============================================================
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    score INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ============================================================
+--  CREATE GAME PROGRESS TABLE
+-- ============================================================
+CREATE TABLE IF NOT EXISTS game_progress (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    current_stage INT DEFAULT 1,
+    lives INT DEFAULT 3,
+    score INT DEFAULT 0,
+    last_saved TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- ============================================================
+--  INSERT TEST USER (optional)
+-- ============================================================
+-- Password: "password123" (hashed)
+INSERT INTO users (username, email, password_hash) 
+VALUES ('testuser', 'test@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+
+-- ============================================================
+--  CHECK TABLES
+-- ============================================================
+SHOW TABLES;
+DESCRIBE users;
+DESCRIBE game_progress;

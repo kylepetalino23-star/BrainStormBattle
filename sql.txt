@@ -1,0 +1,35 @@
+-- ============================================================
+--  BRAINSTORM BATTLE - FIX DATABASE SCHEMA
+-- ============================================================
+
+-- 1. DELETE OLD TABLES (Kung may laman, i-backup muna)
+DROP TABLE IF EXISTS game_progress;
+DROP TABLE IF EXISTS users;
+
+-- 2. CREATE USERS TABLE (TAMA NA!)
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    section VARCHAR(50) NOT NULL,
+    student_id VARCHAR(6) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    current_stage INT DEFAULT 1,
+    role ENUM('admin', 'player') DEFAULT 'player',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_active TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 3. CREATE GAME_PROGRESS TABLE (TAMA NA!)
+CREATE TABLE game_progress (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    current_stage INT DEFAULT 1,
+    lives INT DEFAULT 3,
+    score INT DEFAULT 0,
+    last_saved TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 4. INSERT ADMIN (TAMA NA ANG PASSWORD HASH!)
+INSERT INTO users (full_name, section, student_id, password, role) 
+VALUES ('Admin', 'Admin', '000000', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
