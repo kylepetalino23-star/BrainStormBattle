@@ -1,0 +1,5966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstorm Battle · Official Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+
+
+/* ===== TANGGALIN ANG LAHAT NG BROWSER VIDEO CONTROLS ===== */
+#homeVideo {
+    pointer-events: auto !important;
+}
+
+/* Chrome / Safari / Edge */
+#homeVideo::-webkit-media-controls,
+#homeVideo::-webkit-media-controls-enclosure,
+#homeVideo::-webkit-media-controls-panel,
+#homeVideo::-webkit-media-controls-play-button,
+#homeVideo::-webkit-media-controls-start-playback-button,
+#homeVideo::-webkit-media-controls-overlay-play-button,
+#homeVideo::-webkit-media-controls-overlay-enclosure,
+#homeVideo::-webkit-media-controls-picture-in-picture-button,
+#homeVideo::-webkit-media-controls-fullscreen-button,
+#homeVideo::-webkit-media-controls-toggle-closed-captions-button,
+#homeVideo::-webkit-media-controls-volume-slider,
+#homeVideo::-webkit-media-controls-mute-button,
+#homeVideo::-webkit-media-controls-timeline,
+#homeVideo::-webkit-media-controls-current-time-display,
+#homeVideo::-webkit-media-controls-time-remaining-display {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Firefox */
+#homeVideo::-moz-media-controls {
+    display: none !important;
+}
+
+/* Edge / IE */
+#homeVideo::-ms-media-controls {
+    display: none !important;
+}
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #D174D2;
+            --primary-dark: #b158b2;
+            --secondary: #E0563F;
+            --bg-dark: #412653;
+            --bg-darker: #2e1a3a;
+            --light: #FFFFFF;
+            --accent: #f1c40f;
+            --success: #2ecc71;
+            --shadow: 0 8px 30px rgba(0,0,0,0.3);
+            --radius: 14px;
+        }
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+  /* ===== NAVIGATION - +15% BIGGER ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.6rem 4.6%;  /* +15% */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(46, 26, 58, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(209,116,210,0.15);
+    flex-wrap: wrap;
+}
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }  /* +15% */
+.logo-img { height: 41px; width: auto; }  /* +15% */
+.logo-text { font-size: 1.15rem; font-weight: 800; color: var(--primary); letter-spacing: 0.6px; }  /* +15% */
+.nav-links { display: flex; gap: 0.35rem; flex-wrap: wrap; }  /* +15% */
+/* ===== NAV LINK - HOVER SCALE 1.30 ===== */
+.nav-link {
+    padding: 0.3rem 0.8rem;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.75rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    transform-origin: center center;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-link:hover {
+    color: #fff;
+    background: rgba(209,116,210,0.2);
+    transform: scale(1.50);  /* ← LUMALAKI NG 1.30 */
+    z-index: 10;
+    box-shadow: 0 6px 20px rgba(209, 116, 210, 0.3);
+}
+
+.nav-link.active {
+    color: #fff;
+    background: rgba(209,116,210,0.2);
+}
+
+.nav-link:active {
+    transform: scale(1.15);
+}
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--light); }  /* +15% */
+        /* ===== MAIN CONTENT ===== */
+        .main-content { margin-top: 60px; padding: 0.3rem 0.5rem; }
+        .section { display: none; animation: fadeIn 0.4s ease; }
+        .section.active-section { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0.2rem 0.5rem; }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header { text-align: center; margin-bottom: 0.8rem; }
+        .section-header h2 { font-size: clamp(1.2rem, 2.2vw, 1.8rem); font-weight: 700; }
+        .section-header h2 span { color: var(--primary); }
+        .section-header p { color: rgba(255,255,255,0.6); font-size: clamp(0.75rem, 0.9vw, 0.85rem); }
+
+/* ===== HOME / HERO - ITAAS ANG LAMAN ===== */
+.home-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 55px);
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    align-items: center;
+    width: 100%;
+}
+
+.home-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.home-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(209,116,210,0.08);
+    border: 1px solid rgba(209,116,210,0.1);
+    border-radius: 30px;
+    padding: 0.08rem 0.8rem;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.5);
+    width: fit-content;
+}
+
+.badge-dot {
+    width: 5px;
+    height: 5px;
+    background: #2ecc71;
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.home-text h1 {
+    font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.home-text h1 span {
+    background: linear-gradient(135deg, #D174D2, #f1c40f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+}
+
+.home-text p {
+    font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 480px;
+}
+
+.home-stats {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin: 0.08rem 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.03);
+    padding: 0.08rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.stat-number {
+    font-size: clamp(1rem, 1.4vw, 1.4rem);
+    font-weight: 700;
+    color: #D174D2;
+}
+
+.stat-label {
+    font-size: clamp(0.35rem, 0.5vw, 0.5rem);
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.home-text .btn-primary {
+    padding: 0.3rem 1.5rem;
+    font-size: clamp(0.65rem, 0.8vw, 0.8rem);
+    width: fit-content;
+    margin-top: 0.08rem;
+    border-radius: 30px;
+    gap: 5px;
+}
+
+.home-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-image video {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid rgba(209,116,210,0.06);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    cursor: default;
+    display: block;
+}
+
+.home-image video:hover {
+    transform: scale(1.02);
+    border-color: #D174D2;
+    box-shadow: 0 12px 40px rgba(209, 116, 210, 0.4);
+}
+
+.home-float {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(209,116,210,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #D174D2;
+    animation: float-icon 3s ease-in-out infinite;
+}
+
+.float-1 {
+    top: -5px;
+    right: -5px;
+    animation-delay: 0s;
+}
+
+.float-2 {
+    bottom: -5px;
+    left: -5px;
+    animation-delay: 1.5s;
+}
+
+@keyframes float-icon {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .home-container {
+        min-height: auto;
+        padding: 0.4rem 1rem;
+    }
+    .home-content {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        text-align: center;
+    }
+    .home-badge {
+        margin: 0 auto;
+    }
+    .home-text p {
+        max-width: 100%;
+    }
+    .home-stats {
+        justify-content: center;
+    }
+    .home-text .btn-primary {
+        margin: 0 auto;
+    }
+   
+    .home-float {
+        width: 28px;
+        height: 28px;
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        padding: 0.2rem 0.6rem;
+    }
+    .home-text h1 {
+        font-size: 1.4rem;
+    }
+    .home-text p {
+        font-size: 0.75rem;
+    }
+    .stat-number {
+        font-size: 1.1rem;
+    }
+    .stat-label {
+        font-size: 0.45rem;
+    }
+  
+    .home-text .btn-primary {
+        padding: 0.25rem 1.2rem;
+        font-size: 0.7rem;
+    }
+    .home-float {
+        width: 24px;
+        height: 24px;
+        font-size: 0.55rem;
+    }
+    .home-badge {
+        font-size: 0.55rem;
+        padding: 0.05rem 0.6rem;
+    }
+    .home-stats {
+        gap: 0.5rem;
+    }
+    .stat-item {
+        padding: 0.05rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-container {
+        padding: 0.15rem 0.4rem;
+    }
+    .home-text h1 {
+        font-size: 1.2rem;
+    }
+    .home-text p {
+        font-size: 0.65rem;
+    }
+    .stat-number {
+        font-size: 0.95rem;
+    }
+    .stat-label {
+        font-size: 0.4rem;
+    }
+
+    .home-text .btn-primary {
+        padding: 0.2rem 1rem;
+        font-size: 0.6rem;
+    }
+    .home-float {
+        width: 20px;
+        height: 20px;
+        font-size: 0.5rem;
+    }
+    .float-1 { top: -3px; right: -3px; }
+    .float-2 { bottom: -3px; left: -3px; }
+    .home-badge {
+        font-size: 0.45rem;
+        padding: 0.05rem 0.4rem;
+    }
+    .home-stats {
+        gap: 0.3rem;
+    }
+    .stat-item {
+        padding: 0.05rem 0.3rem;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .home-container {
+        min-height: calc(100vh - 55px);
+        padding: 0.15rem 0.8rem;
+    }
+    .home-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+    .home-text h1 {
+        font-size: 1.2rem;
+    }
+    .home-text p {
+        font-size: 0.65rem;
+    }
+ 
+    .home-float {
+        width: 22px;
+        height: 22px;
+        font-size: 0.55rem;
+    }
+    .stat-number {
+        font-size: 0.9rem;
+    }
+    .home-text .btn-primary {
+        padding: 0.15rem 0.8rem;
+        font-size: 0.6rem;
+    }
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .home-content {
+        gap: 1.5rem !important;
+    }
+    .home-text h1 {
+        font-size: 2.2rem !important;
+    }
+    .home-text p {
+        font-size: 0.95rem !important;
+    }
+    .stat-number {
+        font-size: 1.5rem !important;
+    }
+ 
+    .home-float {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        padding: 0.3rem 1rem !important;
+    }
+    .home-content {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 1rem !important;
+    }
+    .home-badge {
+        margin: 0 auto !important;
+    }
+    .home-text p {
+        max-width: 100% !important;
+    }
+    .home-stats {
+        justify-content: center !important;
+    }
+    .home-text .btn-primary {
+        margin: 0 auto !important;
+    }
+    .home-text h1 {
+        font-size: 1.8rem !important;
+    }
+    .home-text p {
+        font-size: 0.85rem !important;
+    }
+    .stat-number {
+        font-size: 1.3rem !important;
+    }
+    .stat-label {
+        font-size: 0.6rem !important;
+    }
+    .home-image img {
+        max-height: 200px !important;
+    }
+    .home-float {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.7rem !important;
+    }
+    .home-text .btn-primary {
+        padding: 0.4rem 1.5rem !important;
+        font-size: 0.85rem !important;
+    }
+    .home-badge {
+        font-size: 0.7rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-text h1 {
+        font-size: 1.4rem !important;
+    }
+    .home-text p {
+        font-size: 0.75rem !important;
+    }
+    .stat-number {
+        font-size: 1.1rem !important;
+    }
+    .stat-label {
+        font-size: 0.5rem !important;
+    }
+    .home-image img {
+        max-height: 150px !important;
+    }
+    .home-float {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 0.6rem !important;
+    }
+    .float-1 { top: -4px !important; right: -4px !important; }
+    .float-2 { bottom: -4px !important; left: -4px !important; }
+    .home-text .btn-primary {
+        padding: 0.3rem 1.2rem !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            padding: 0.35rem 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none; border-radius: 30px; color: #fff; font-weight: 600;
+            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
+            cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(209,116,210,0.35); }
+
+        /* ===== MONSTER GRID ===== */
+        .monster-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.6rem; margin: 0.3rem 0; }
+        .monster-card {
+            background: rgba(255,255,255,0.04); border-radius: var(--radius); padding: 0.6rem;
+            text-align: center; border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer;
+        }
+        .monster-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px) scale(1.40);  /* ← LUMALAKI */
+    background: rgba(209,116,210,0.08);
+    box-shadow: 0 12px 35px rgba(209, 116, 210, 0.25);
+    z-index: 10;
+}
+        .monster-card img { width: 60px; height: 60px; object-fit: contain; }
+        .monster-card h4 { font-size: 0.75rem; margin: 0.2rem 0 0.1rem; }
+        .monster-card p { font-size: 0.6rem; color: rgba(255,255,255,0.5); }
+        .stage-group-title { font-size: clamp(0.85rem, 1.1vw, 1rem); margin: 0.8rem 0 0.4rem; display: flex; align-items: center; gap: 6px; }
+
+    
+
+        /* ===== MORE ===== */
+        .goal-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1.2rem; 
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .goal-grid h2 { 
+            font-size: clamp(1.2rem, 2vw, 1.6rem); 
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        .goal-grid p { 
+            font-size: clamp(0.85rem, 1vw, 1rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 700px;
+            margin: 0 auto 0.5rem;
+        }
+        .goal-highlight { 
+            background: rgba(209,116,210,0.08); 
+            border-left: 3px solid var(--primary); 
+            padding: 0.8rem 1rem; 
+            margin: 0.8rem auto; 
+            border-radius: 6px;
+            text-align: left;
+            max-width: 700px;
+        }
+        .goal-highlight p {
+            margin: 0;
+            font-size: clamp(0.8rem, 0.95vw, 0.95rem);
+        }
+        .goal-stats { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 0.8rem; 
+            margin: 1rem auto 0; 
+            max-width: 600px;
+        }
+        .goal-stat-item { 
+            background: rgba(255,255,255,0.04); 
+            padding: 0.8rem; 
+            border-radius: 8px; 
+            text-align: center;
+            font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .goal-stat-number { 
+            font-size: clamp(1.2rem, 1.8vw, 1.6rem); 
+            font-weight: 700; 
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin: 0.8rem 0; }
+        .mission-card { background: rgba(255,255,255,0.04); border-radius: var(--radius); padding: 1rem; text-align: center; transition: all 0.3s ease; }
+        .mission-card:hover { transform: translateY(-3px); border: 1px solid var(--primary); }
+        .mission-icon { width: 44px; height: 44px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin: 0 auto 0.6rem; }
+
+        .learning-progress { background: rgba(255,255,255,0.04); border-radius: var(--radius); padding: 1rem; margin: 0.8rem 0; }
+        .progress-label { display: flex; justify-content: space-between; margin: 0.3rem 0 0.1rem; font-size: 0.75rem; }
+        .progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+        .knowledge-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; margin: 0.6rem 0; }
+        .knowledge-tag { padding: 0.15rem 0.6rem; background: rgba(209,116,210,0.1); border: 1px solid var(--primary); border-radius: 30px; font-size: 0.6rem; cursor: pointer; transition: all 0.3s ease; }
+        .knowledge-tag:hover { background: var(--primary); transform: scale(1.04); }
+
+/* ===== ABOUT ===== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.2rem;
+}
+
+.about-grid h3 {
+    font-size: clamp(2.2rem, 3.1vw, 2.9rem);
+    margin-bottom: 0.6rem;
+}
+
+.about-grid p {
+    font-size: clamp(1.5rem, 1.7vw, 1.7rem);
+    line-height: 2.1;
+    margin-bottom: 0.6rem;
+}
+
+.about-grid h4 {
+    font-size: clamp(1.6rem, 2.1vw, 2.1rem);
+    margin: 1.4rem 0 0.7rem;
+}
+
+.features-list {
+    list-style: none;
+}
+
+.features-list li {
+    padding: 0.55rem 0;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    font-size: clamp(1.35rem, 1.5vw, 1.5rem);
+}
+
+.features-list i {
+    font-size: 1.6rem;
+    color: var(--success);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.member-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-3px);
+    border: 1px solid var(--primary);
+}
+
+.member-avatar {
+    width: 95px;
+    height: 95px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    margin: 0 auto 0.6rem;
+}
+
+.member-card h4 {
+    font-size: 1.5rem;
+}
+
+.member-card p {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.5);
+}
+
+/* ===== TECH STACK - PALAKIHIN ===== */
+.tech-stack {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* ============================================================ */
+/*  TECH CARDS - BRIGHTER + HOVER SCALE 1.30 (FIXED)           */
+/* ============================================================ */
+
+.tech-card {
+    background: rgba(65, 38, 83, 0.95) !important;
+    border: 2px solid rgba(209, 116, 210, 0.5) !important;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    flex: 1;
+    min-width: 90px;
+    transition: all 0.3s ease !important;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transform-origin: center center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.tech-card:hover {
+    border-color: #D174D2 !important;
+    transform: translateY(-3px) scale(1.35) !important;  /* ← LAHAT LUMALAKI */
+    background: rgba(65, 38, 83, 1) !important;
+    box-shadow: 0 12px 40px rgba(209, 116, 210, 0.6) !important;
+    z-index: 10 !important;
+}
+
+/* ===== MYSQL - SPECIAL CARD ===== */
+.tech-card.mysql {
+    background: rgba(68, 121, 161, 0.3) !important;
+    border: 2px solid #4479A1 !important;
+    width: 100%;
+    flex: 0 0 100%;
+    padding: 0.8rem;
+    border-radius: 12px;
+}
+
+.tech-card.mysql:hover {
+    background: rgba(68, 121, 161, 0.5) !important;
+    border-color: #6BA8D9 !important;
+    transform: translateY(-3px) scale(1.15) !important;  /* ← MYSQL LANG 1.15 */
+    box-shadow: 0 12px 40px rgba(68, 121, 161, 0.6) !important;
+}
+
+/* ===== ICONS ===== */
+.tech-card i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    filter: brightness(1.3) drop-shadow(0 0 10px currentColor);
+}
+
+.tech-card:hover i {
+    transform: scale(1.1);
+    filter: brightness(1.5) drop-shadow(0 0 20px currentColor);
+}
+
+.tech-card span {
+    font-size: 0.85rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.tech-card:hover span {
+    color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(209, 116, 210, 0.8);
+}
+
+/* ===== ICON COLORS ===== */
+.fa-html5 { color: #FF6B35; filter: brightness(1.4) drop-shadow(0 0 15px #E34F26); }
+.fa-css3-alt { color: #4DA6FF; filter: brightness(1.4) drop-shadow(0 0 15px #1572B6); }
+.fa-js { color: #FFE600; filter: brightness(1.4) drop-shadow(0 0 15px #F7DF1E); }
+.fa-php { color: #A0A0FF; filter: brightness(1.4) drop-shadow(0 0 15px #777BB3); }
+.fa-database { color: #6BA8D9; filter: brightness(1.5) drop-shadow(0 0 15px #4479A1); }
+
+.tech-card i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.tech-card span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* MGA KULAY NG LOGO */
+.fa-html5 { color: #E34F26; }
+.fa-css3-alt { color: #1572B6; }
+.fa-js { color: #F7DF1E; }
+.fa-php { color: #777BB3; }
+.fa-database { color: #4479A1; }
+
+/* MYSQL - RECTANGLE STYLE */
+.tech-card.mysql {
+    border-color: #4479A1;
+    background: rgba(68, 121, 161, 0.1);
+    min-width: 100%;
+    flex: 0 0 100%;
+    padding: 1.2rem;
+}
+
+.tech-card.mysql:hover {
+    background: rgba(68, 121, 161, 0.2);
+    border-color: #4479A1;
+}
+
+.tech-card.mysql i {
+    color: #4479A1;
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.8rem;
+    }
+    .about-grid h3 {
+        font-size: 2.4rem;
+    }
+    .about-grid p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        gap: 2rem;
+    }
+    .about-grid h3 {
+        font-size: 2rem;
+    }
+    .about-grid p {
+        font-size: 1.3rem;
+    }
+    .features-list li {
+        font-size: 1.2rem;
+        padding: 0.4rem 0;
+    }
+    .team-grid {
+        gap: 1rem;
+    }
+    .member-card {
+        padding: 1rem;
+    }
+    .member-avatar {
+        width: 72px;
+        height: 72px;
+        font-size: 2rem;
+    }
+    .member-card h4 {
+        font-size: 1.2rem;
+    }
+    .member-card p {
+        font-size: 1rem;
+    }
+    .tech-card {
+        padding: 0.7rem 1.1rem;
+    }
+    .tech-card i {
+        font-size: 2.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-grid h3 {
+        font-size: 1.7rem;
+    }
+    .about-grid p {
+        font-size: 1.1rem;
+    }
+    .features-list li {
+        font-size: 1.05rem;
+    }
+    .team-grid {
+        gap: 0.7rem;
+    }
+    .member-card {
+        padding: 0.7rem;
+    }
+    .member-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+    }
+    .member-card h4 {
+        font-size: 1.05rem;
+    }
+    .member-card p {
+        font-size: 0.9rem;
+    }
+    .tech-card {
+        padding: 0.4rem 0.7rem;
+        min-width: 70px;
+    }
+    .tech-card i {
+        font-size: 1.7rem;
+    }
+}
+
+        /* ===== FEATURED TABS ===== */
+        .featured-tabs { display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; margin-bottom: 0.8rem; }
+        .featured-tab {
+            padding: 0.3rem 0.8rem; background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(209,116,210,0.15); border-radius: 30px;
+            cursor: pointer; font-size: 0.7rem; transition: all 0.3s ease; display: flex; align-items: center; gap: 4px;
+        }
+        .featured-tab:hover, .featured-tab.active { background: var(--primary); border-color: transparent; color: #fff; }
+        .featured-content { background: rgba(255,255,255,0.04); border-radius: var(--radius); padding: 1rem; }
+        .featured-content .stage-badge { background: rgba(209,116,210,0.15); padding: 0.15rem 0.8rem; border-radius: 30px; display: inline-block; font-size: 0.65rem; }
+        .option-item {
+            background: rgba(255,255,255,0.02); border: 2px solid rgba(255,255,255,0.06);
+            border-radius: 8px; padding: 0.4rem 0.6rem; margin: 0.3rem 0;
+            cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.6rem;
+        }
+        .option-item:hover { border-color: var(--primary); background: rgba(209,116,210,0.06); }
+        .option-prefix { width: 24px; height: 24px; background: rgba(209,116,210,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.6rem; }
+
+        /* ===== BOSS / TYPING ===== */
+        .phase-indicator { display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap; margin: 0.6rem 0; }
+        .phase {
+            width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            font-weight: 600; font-size: 0.7rem; border: 2px solid transparent; transition: all 0.3s ease;
+        }
+        .phase.active { background: var(--secondary); border-color: var(--accent); transform: scale(1.08); }
+        .phase:hover { transform: scale(1.08); background: var(--accent); color: var(--bg-darker); }
+
+        /* ===== MAP ===== */
+        .map-markers { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+        .map-marker { padding: 0.15rem 0.6rem; background: rgba(209,116,210,0.08); border: 1px solid var(--primary); border-radius: 30px; font-size: 0.6rem; cursor: pointer; transition: all 0.3s ease; }
+        .map-marker:hover { background: var(--primary); transform: scale(1.04); }
+
+        /* ===== TABLES ===== */
+        .rewards-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .rewards-table th { padding: 0.3rem; color: var(--primary); border-bottom: 2px solid var(--primary); text-align: left; }
+        .rewards-table td { padding: 0.3rem; border-bottom: 1px solid rgba(209,116,210,0.1); }
+        .gate-row { background: rgba(224,86,63,0.06); }
+        .gate-warning { color: var(--accent); }
+
+        /* ===== SCREENSHOT ===== */
+        .screenshot-img { width: 100%; max-height: 200px; object-fit: cover; border-radius: var(--radius); border: 2px solid rgba(209,116,210,0.1); margin: 0.3rem 0; }
+        .screenshot-label { text-align: center; font-size: 0.65rem; color: rgba(255,255,255,0.4); }
+
+        /* ============================================================ */
+        /*  RESPONSIVE BREAKPOINTS                                      */
+        /* ============================================================ */
+        @media (max-width: 1024px) {
+            .home-container { min-height: auto; padding: 0.3rem 1rem; }
+            .home-content { grid-template-columns: 1fr; gap: 1rem; text-align: center; }
+            .home-badge { margin: 0 auto; }
+            .home-text p { max-width: 100%; }
+            .home-stats { justify-content: center; }
+            .home-text .btn-primary { margin: 0 auto; }
+            .home-image img { max-height: 180px; }
+            .home-float { width: 28px; height: 28px; font-size: 0.7rem; }
+            .goal-grid, .about-grid { grid-template-columns: 1fr; }
+            .story-wrapper { min-height: auto; padding: 0.2rem 0.8rem; justify-content: flex-start; }
+            .story-image-container { max-height: 35vh; min-height: 120px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0.4rem 4%; }
+            .nav-links {
+                display: none; position: absolute; top: 50px; left: 0; width: 100%;
+                background: var(--bg-darker); padding: 0.6rem; flex-direction: column;
+                gap: 0.2rem; border-bottom: 2px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .nav-link { padding: 0.4rem 0.8rem; width: 100%; text-align: center; font-size: 0.7rem; }
+
+            .home-container { padding: 0.2rem 0.6rem; }
+            .home-text h1 { font-size: 1.2rem; }
+            .home-text p { font-size: 0.7rem; }
+            .home-stats { gap: 0.3rem; }
+            .stat-item { padding: 0.05rem 0.4rem; }
+            .stat-number { font-size: 0.9rem; }
+            .stat-label { font-size: 0.35rem; }
+            .home-image img { max-height: 150px; }
+            .home-float { width: 24px; height: 24px; font-size: 0.6rem; }
+            .home-text .btn-primary { padding: 0.2rem 1rem; font-size: 0.6rem; width: 100%; justify-content: center; }
+            .home-badge { font-size: 0.5rem; padding: 0.05rem 0.5rem; }
+
+            .monster-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+            .monster-card img { width: 50px; height: 50px; }
+            .monster-card h4 { font-size: 0.65rem; }
+            .monster-card p { font-size: 0.55rem; }
+
+            .goal-stats { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .mission-grid { grid-template-columns: 1fr; }
+
+            .story-thumbnail { min-width: 32px; padding: 0.1rem 0.4rem; }
+            .story-thumbnail .thumb-icon { font-size: 0.5rem; }
+            .story-thumbnail .thumb-num { font-size: 0.4rem; }
+            .story-thumbnail .thumb-label { font-size: 0.3rem; }
+            .story-arrow { width: 24px; height: 24px; font-size: 0.5rem; }
+            .story-arrow-left { left: 4px; }
+            .story-arrow-right { right: 4px; }
+            .story-chapter-badge { top: 6px; left: 6px; padding: 0.1rem 0.5rem; font-size: 0.45rem; }
+            .story-image-container { max-height: 28vh; min-height: 90px; }
+
+            .featured-tab { font-size: 0.6rem; padding: 0.2rem 0.6rem; }
+            .rewards-table { font-size: 0.6rem; }
+            .rewards-table th, .rewards-table td { padding: 0.15rem; }
+            .btn-primary { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .home-container { padding: 0.1rem 0.4rem; }
+            .home-text h1 { font-size: 1rem; }
+            .home-text p { font-size: 0.6rem; }
+            .home-image img { max-height: 120px; border-radius: 10px; }
+            .home-float { width: 20px; height: 20px; font-size: 0.5rem; }
+            .float-1 { top: -3px; right: -3px; }
+            .float-2 { bottom: -3px; left: -3px; }
+            .stat-number { font-size: 0.75rem; }
+            .stat-label { font-size: 0.3rem; }
+            .home-text .btn-primary { padding: 0.15rem 0.8rem; font-size: 0.55rem; }
+
+            .monster-grid { grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+            .monster-card { padding: 0.3rem; }
+            .monster-card img { width: 40px; height: 40px; }
+            .monster-card h4 { font-size: 0.6rem; }
+            .monster-card p { font-size: 0.5rem; }
+
+            .team-grid { grid-template-columns: 1fr; }
+            .goal-stats { grid-template-columns: 1fr; }
+
+            .story-thumbnail { min-width: 28px; padding: 0.05rem 0.3rem; }
+            .story-thumbnail .thumb-icon { font-size: 0.4rem; }
+            .story-thumbnail .thumb-num { font-size: 0.35rem; }
+            .story-thumbnail .thumb-label { font-size: 0.25rem; }
+            .story-arrow { width: 20px; height: 20px; font-size: 0.4rem; }
+            .screenshot-img { max-height: 100px; }
+            .story-image-container { max-height: 22vh; min-height: 70px; }
+            .story-wrapper { min-height: auto; padding: 0.1rem 0.3rem; }
+            .story-header h2 { font-size: 0.8rem; }
+            .story-header p { font-size: 0.5rem; }
+            #storyTitle { font-size: 0.65rem; }
+            #storyDescription { font-size: 0.55rem; }
+            .story-progress span { font-size: 0.45rem; padding: 0.05rem 0.6rem; }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            .home-container { min-height: calc(100vh - 55px); padding: 0.1rem 0.8rem; }
+            .home-content { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .home-text h1 { font-size: 1.1rem; }
+            .home-text p { font-size: 0.6rem; }
+            .home-image img { max-height: 130px; }
+            .home-float { width: 22px; height: 22px; font-size: 0.6rem; }
+            .stat-number { font-size: 0.8rem; }
+            .home-text .btn-primary { padding: 0.15rem 0.8rem; font-size: 0.55rem; }
+            .home-stats { gap: 0.3rem; }
+
+            .story-wrapper { height: calc(100vh - 55px); padding: 0.1rem 0.6rem; }
+            .story-image-container { max-height: 32vh; min-height: 80px; }
+            .story-header h2 { font-size: 0.8rem; margin: 0; }
+            .story-header p { font-size: 0.55rem; margin: 0; }
+            .story-header-icon { font-size: 1rem; margin-bottom: 0; }
+            .story-bottom-section { gap: 0.1rem; }
+            #storyTitle { font-size: 0.6rem; }
+            #storyDescription { font-size: 0.55rem; line-height: 1.2; }
+            .story-thumbnail { min-width: 26px; padding: 0.05rem 0.3rem; }
+            .story-thumbnail .thumb-icon { font-size: 0.4rem; }
+            .story-thumbnail .thumb-num { font-size: 0.35rem; }
+            .story-thumbnail .thumb-label { font-size: 0.25rem; }
+            .story-progress span { font-size: 0.45rem; padding: 0.05rem 0.5rem; }
+            .story-arrow { width: 20px; height: 20px; font-size: 0.4rem; }
+        }
+
+         /* ============================================================ */
+/*  HOME PAGE - KONTING ZOOM (+10% sa laki)                   */
+/* ============================================================ */
+
+/* Palakihin ang buong container at spacing */
+.home-container {
+    padding: 0.5rem 2rem !important;
+}
+
+/* Palakihin ang title */
+.home-text h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important;
+}
+
+/* Palakihin ang description */
+.home-text p {
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem) !important;
+    max-width: 550px !important;
+}
+
+/* Palakihin ang stats numbers */
+.stat-number {
+    font-size: clamp(1.3rem, 2vw, 1.8rem) !important;
+}
+
+/* Palakihin ang stats labels */
+.stat-label {
+    font-size: clamp(0.55rem, 0.7vw, 0.7rem) !important;
+}
+
+/* Palakihin ang badge */
+.home-badge {
+    font-size: 0.75rem !important;
+    padding: 0.2rem 1rem !important;
+}
+
+/* Palakihin ang button */
+.home-text .btn-primary {
+    padding: 0.5rem 2rem !important;
+    font-size: clamp(0.85rem, 1vw, 1rem) !important;
+}
+
+/* Palakihin ang image */
+.home-image img {
+    max-height: 320px !important;
+}
+
+/* Ayusin ang spacing ng stats */
+.home-stats {
+    gap: 1rem !important;
+}
+
+.stat-item {
+    padding: 0.2rem 1rem !important;
+}
+
+/* -------------------- */
+/*  RESPONSIVE ADJUST   */
+/* -------------------- */
+
+@media (max-width: 1024px) {
+    .home-text h1 {
+        font-size: 1.8rem !important;
+    }
+    .home-image img {
+        max-height: 250px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        padding: 0.3rem 1rem !important;
+    }
+    .home-text h1 {
+        font-size: 1.5rem !important;
+    }
+    .home-text p {
+        font-size: 0.85rem !important;
+    }
+    .stat-number {
+        font-size: 1.2rem !important;
+    }
+    .home-image img {
+        max-height: 200px !important;
+    }
+    .home-text .btn-primary {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-text h1 {
+        font-size: 1.3rem !important;
+    }
+    .home-text p {
+        font-size: 0.75rem !important;
+    }
+    .stat-number {
+        font-size: 1rem !important;
+    }
+    .home-image img {
+        max-height: 150px !important;
+    }
+    .home-badge {
+        font-size: 0.6rem !important;
+    }
+}
+
+/* ============================================================ */
+/*  HOME PAGE - KONTING ZOOM (+10% sa laki)                   */
+/* ============================================================ */
+
+/* Palakihin ang buong container at spacing */
+.home-container {
+    padding: 0.5rem 2rem !important;
+}
+
+/* Palakihin ang title */
+.home-text h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important;
+}
+
+/* Palakihin ang description */
+.home-text p {
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem) !important;
+    max-width: 550px !important;
+}
+
+/* Palakihin ang stats numbers */
+.stat-number {
+    font-size: clamp(1.3rem, 2vw, 1.8rem) !important;
+}
+
+/* Palakihin ang stats labels */
+.stat-label {
+    font-size: clamp(0.55rem, 0.7vw, 0.7rem) !important;
+}
+
+/* Palakihin ang badge */
+.home-badge {
+    font-size: 0.75rem !important;
+    padding: 0.2rem 1rem !important;
+}
+
+/* Palakihin ang button */
+.home-text .btn-primary {
+    padding: 0.5rem 2rem !important;
+    font-size: clamp(0.85rem, 1vw, 1rem) !important;
+}
+
+/* Palakihin ang image */
+.home-image img {
+    max-height: 320px !important;
+}
+
+/* Ayusin ang spacing ng stats */
+.home-stats {
+    gap: 1rem !important;
+}
+
+.stat-item {
+    padding: 0.2rem 1rem !important;
+}
+
+/* -------------------- */
+/*  RESPONSIVE ADJUST   */
+/* -------------------- */
+
+@media (max-width: 1024px) {
+    .home-text h1 {
+        font-size: 1.8rem !important;
+    }
+    .home-image img {
+        max-height: 250px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        padding: 0.3rem 1rem !important;
+    }
+    .home-text h1 {
+        font-size: 1.5rem !important;
+    }
+    .home-text p {
+        font-size: 0.85rem !important;
+    }
+    .stat-number {
+        font-size: 1.2rem !important;
+    }
+    .home-image img {
+        max-height: 200px !important;
+    }
+    .home-text .btn-primary {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-text h1 {
+        font-size: 1.3rem !important;
+    }
+    .home-text p {
+        font-size: 0.75rem !important;
+    }
+    .stat-number {
+        font-size: 1rem !important;
+    }
+    .home-image img {
+        max-height: 150px !important;
+    }
+    .home-badge {
+        font-size: 0.6rem !important;
+    }
+}
+/* ============================================================ */
+/*  HOME - +5% MORE ZOOM (MAS MALAKI PA KONTI)               */
+/* ============================================================ */
+
+.home-wrapper {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0.8rem 2.8rem !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: calc(100vh - 62px) !important;
+}
+
+.home-content {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3.5rem !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.home-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+}
+
+.home-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(209,116,210,0.08) !important;
+    border: 1px solid rgba(209,116,210,0.1) !important;
+    border-radius: 50px !important;
+    padding: 0.25rem 1.3rem !important;
+    font-size: 0.95rem !important;
+    color: rgba(255,255,255,0.5) !important;
+    width: fit-content !important;
+}
+
+.badge-dot {
+    width: 7px !important;
+    height: 7px !important;
+    background: #2ecc71 !important;
+    border-radius: 50% !important;
+    animation: pulse-dot 2s infinite !important;
+}
+
+@keyframes pulse-dot {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.home-text h1 {
+    font-size: 3.8rem !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+}
+
+.home-text h1 span {
+    background: linear-gradient(135deg, #D174D2, #f1c40f) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.home-text p {
+    font-size: 1.25rem !important;
+    color: rgba(255,255,255,0.6) !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    max-width: 540px !important;
+}
+
+.home-stats {
+    display: flex !important;
+    gap: 1.3rem !important;
+    flex-wrap: wrap !important;
+    margin: 0.15rem 0 !important;
+}
+
+.stat-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    background: rgba(255,255,255,0.03) !important;
+    padding: 0.2rem 1.3rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255,255,255,0.04) !important;
+    min-width: 85px !important;
+}
+
+.stat-number {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    color: #D174D2 !important;
+}
+
+.stat-label {
+    font-size: 0.7rem !important;
+    color: rgba(255,255,255,0.3) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.btn-play {
+    padding: 0.65rem 2.4rem !important;
+    background: linear-gradient(135deg, #D174D2, #b158b2) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: fit-content !important;
+    margin-top: 0.15rem !important;
+}
+
+.btn-play:hover {
+    transform: translateY(-3px) scale(1.30) !important; 
+    box-shadow: 0 8px 25px rgba(209,116,210,0.35) !important;
+}
+
+.home-image {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* ===== HOME IMAGE VIDEO — MAY ANIMATED STROKE ===== */
+.home-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-image video {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    cursor: default;
+    display: block;
+    position: relative;
+    z-index: 1;
+    
+    /* ⭐ ANIMATED STROKE — LIVE VIDEO INDICATOR */
+    border: 4px solid transparent;
+    background: linear-gradient(#000, #000) padding-box,
+                linear-gradient(90deg, #D174D2, #f1c40f, #2ecc71, #D174D2) border-box;
+    background-size: 300% 100%;
+    animation: videoStroke 3s linear infinite;
+    box-shadow: 0 0 25px rgba(209, 116, 210, 0.5),
+                0 0 50px rgba(241, 196, 15, 0.3),
+                0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ⭐ ANIMATED GRADIENT STROKE */
+@keyframes videoStroke {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+/* ⭐ HOVER — LUMALAKI */
+.home-image video:hover {
+    transform: scale(1.4);   /* ← I-adjust ang laki (1.08 = 8% mas malaki) */
+    box-shadow: 0 0 40px rgba(209, 116, 210, 0.8),
+                0 0 80px rgba(241, 196, 15, 0.5),
+                0 12px 40px rgba(0, 0, 0, 0.4);
+    animation: videoStroke 1.5s linear infinite;
+    z-index: 10;
+}
+
+/* ⭐ "LIVE" BADGE SA TAAS */
+.home-image::before {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(224, 86, 63, 0.9);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 30px;
+    letter-spacing: 1.5px;
+    font-family: 'Courier New', monospace;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(224, 86, 63, 0.6);
+    animation: livePulse 1.5s ease infinite;
+    pointer-events: none;
+}
+
+/* ⭐ LIVE PULSE ANIMATION */
+@keyframes livePulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(224, 86, 63, 0.6);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 35px rgba(224, 86, 63, 0.9);
+    }
+}
+
+
+@keyframes cornerGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .home-image video {
+        border-width: 3px;
+        max-height: 250px;
+    }
+    
+    .home-image::before {
+        font-size: 0.55rem;
+        padding: 4px 10px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    .home-image::after {
+        background-size: 
+            20px 2px,
+            2px 20px,
+            20px 2px,
+            2px 20px,
+            20px 2px,
+            2px 20px,
+            20px 2px,
+            2px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-image video {
+        border-width: 2px;
+        max-height: 180px;
+    }
+    
+    .home-image::before {
+        font-size: 0.5rem;
+        padding: 3px 8px;
+        top: 8px;
+        left: 8px;
+    }
+    
+    .home-image::after {
+        background-size: 
+            15px 2px,
+            2px 15px,
+            15px 2px,
+            2px 15px,
+            15px 2px,
+            2px 15px,
+            15px 2px,
+            2px 15px;
+    }
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .home-wrapper { min-height: auto !important; padding: 0.5rem 1.5rem !important; }
+    .home-content { grid-template-columns: 1fr !important; gap: 1.5rem !important; text-align: center !important; }
+    .home-badge { margin: 0 auto !important; }
+    .home-text p { max-width: 100% !important; }
+    .home-stats { justify-content: center !important; }
+    .btn-play { margin: 0 auto !important; }
+    .home-image img { max-height: 290px !important; }
+    .home-text h1 { font-size: 2.8rem !important; }
+    .home-text p { font-size: 1rem !important; }
+    .stat-number { font-size: 1.7rem !important; }
+}
+
+@media (max-width: 768px) {
+    .home-wrapper { padding: 0.3rem 1rem !important; }
+    .home-text h1 { font-size: 2.2rem !important; }
+    .home-text p { font-size: 0.9rem !important; }
+    .stat-number { font-size: 1.4rem !important; }
+    .stat-label { font-size: 0.55rem !important; }
+    .home-image img { max-height: 230px !important; }
+    .btn-play { padding: 0.4rem 1.6rem !important; font-size: 0.85rem !important; }
+    .home-badge { font-size: 0.7rem !important; padding: 0.15rem 1rem !important; }
+    .stat-item { padding: 0.1rem 0.8rem !important; min-width: 65px !important; }
+}
+
+@media (max-width: 480px) {
+    .home-wrapper { padding: 0.15rem 0.6rem !important; }
+    .home-text h1 { font-size: 1.5rem !important; }
+    .home-text p { font-size: 0.7rem !important; }
+    .stat-number { font-size: 1.1rem !important; }
+    .stat-label { font-size: 0.45rem !important; }
+    .home-image img { max-height: 170px !important; }
+    .btn-play { padding: 0.25rem 1.2rem !important; font-size: 0.7rem !important; }
+    .stat-item { padding: 0.05rem 0.5rem !important; min-width: 50px !important; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .home-wrapper { min-height: calc(100vh - 55px) !important; padding: 0.15rem 1rem !important; }
+    .home-content { grid-template-columns: 1fr 1fr !important; gap: 1rem !important; }
+    .home-text h1 { font-size: 1.7rem !important; }
+    .home-text p { font-size: 0.75rem !important; }
+    .home-image img { max-height: 200px !important; }
+    .stat-number { font-size: 1.1rem !important; }
+    .btn-play { padding: 0.2rem 1rem !important; font-size: 0.7rem !important; }
+}
+
+/* ============================================================ */
+/*  HOME - GAME VERSION (COMPACT & FIT)                       */
+/* ============================================================ */
+
+.home-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 62px);
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    align-items: center;
+    width: 100%;
+}
+
+.home-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.home-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(209,116,210,0.08);
+    border: 1px solid rgba(209,116,210,0.1);
+    border-radius: 50px;
+    padding: 0.05rem 0.8rem;
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.5);
+    width: fit-content;
+}
+
+.tag-dot {
+    width: 4px;
+    height: 4px;
+    background: #2ecc71;
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.home-title {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.home-title span {
+    background: linear-gradient(135deg, #D174D2, #f1c40f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.home-desc {
+    font-size: clamp(0.65rem, 0.8vw, 0.8rem);
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+    margin: 0;
+    max-width: 460px;
+}
+
+.home-stats-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.05rem 0;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.03);
+    padding: 0.05rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.04);
+    min-width: 55px;
+}
+
+.stat-num {
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 700;
+    color: #D174D2;
+}
+
+.stat-lbl {
+    font-size: clamp(0.3rem, 0.4vw, 0.4rem);
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.btn-play {
+    padding: 0.25rem 1.4rem;
+    background: linear-gradient(135deg, #D174D2, #b158b2);
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 0.7vw, 0.7rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    margin-top: 0.05rem;
+}
+
+.btn-play:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(209,116,210,0.3);
+}
+
+.home-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.img-wrapper img {
+    width: 100%;
+    max-height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 2px solid rgba(209,116,210,0.06);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.img-wrapper img:hover {
+    transform: scale(1.02);
+    border-color: #D174D2;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .home-wrapper { min-height: auto; padding: 0.3rem 1rem; }
+    .home-grid { grid-template-columns: 1fr; gap: 1rem; text-align: center; }
+    .home-tag { margin: 0 auto; }
+    .home-desc { max-width: 100%; }
+    .home-stats-row { justify-content: center; }
+    .btn-play { margin: 0 auto; }
+    .img-wrapper img { max-height: 200px; }
+}
+
+@media (max-width: 768px) {
+    .home-wrapper { padding: 0.2rem 0.6rem; }
+    .home-title { font-size: 1.3rem; }
+    .home-desc { font-size: 0.65rem; }
+    .stat-num { font-size: 0.95rem; }
+    .stat-lbl { font-size: 0.35rem; }
+    .img-wrapper img { max-height: 160px; }
+    .btn-play { padding: 0.2rem 1rem; font-size: 0.6rem; }
+    .home-tag { font-size: 0.5rem; }
+    .stat-box { padding: 0.05rem 0.4rem; min-width: 45px; }
+}
+
+@media (max-width: 480px) {
+    .home-wrapper { padding: 0.1rem 0.4rem; }
+    .home-title { font-size: 1rem; }
+    .home-desc { font-size: 0.55rem; }
+    .stat-num { font-size: 0.8rem; }
+    .stat-lbl { font-size: 0.3rem; }
+    .img-wrapper img { max-height: 120px; }
+    .btn-play { padding: 0.15rem 0.8rem; font-size: 0.5rem; }
+    .stat-box { padding: 0.05rem 0.3rem; min-width: 35px; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .home-wrapper { min-height: calc(100vh - 55px); padding: 0.1rem 0.8rem; }
+    .home-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .home-title { font-size: 1.1rem; }
+    .home-desc { font-size: 0.6rem; }
+    .img-wrapper img { max-height: 140px; }
+    .stat-num { font-size: 0.85rem; }
+    .btn-play { padding: 0.15rem 0.8rem; font-size: 0.55rem; }
+}
+
+/* ============================================================ */
+/*  STORY PAGE - ITAAS ANG LAMAN (MAY KONTING SPACE)          */
+/* ============================================================ */
+
+.story-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.3rem 1rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: calc(100vh - 55px);
+}
+
+/* ===== HEADER - MAS COMPACT ===== */
+.story-header {
+    text-align: center;
+    margin-bottom: 0.2rem;
+    padding: 0.05rem 0;
+    position: relative;
+}
+
+.story-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+}
+
+.story-header-icon {
+    display: inline-block;
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 0.05rem;
+}
+
+.story-header h2 {
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-weight: 700;
+    margin: 0;
+}
+
+.story-header h2 span {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.story-header p {
+    color: rgba(255,255,255,0.5);
+    font-size: clamp(0.55rem, 0.65vw, 0.7rem);
+    margin: 0;
+}
+
+/* ===== IMAGE - MAS MALAKI ANG SPACE ===== */
+.story-image-wrapper {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+}
+
+.story-image-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-height: 55vh;
+    min-height: 140px;
+    background: rgba(0,0,0,0.3);
+    border: 3px solid var(--primary);
+    box-shadow: 0 4px 20px rgba(209,116,210,0.15);
+}
+
+.story-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.story-main-image:hover {
+    transform: scale(1.01);
+}
+
+/* ===== BADGE ===== */
+.story-chapter-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(10px);
+    padding: 0.15rem 0.9rem;
+    border-radius: 30px;
+    font-size: clamp(0.5rem, 0.65vw, 0.65rem);
+    font-weight: 600;
+    color: var(--primary);
+    border: 1px solid rgba(209,116,210,0.25);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.story-chapter-badge i {
+    font-size: 0.55rem;
+    color: var(--accent);
+}
+
+/* ===== ARROWS ===== */
+.story-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    color: white;
+    border: 2px solid rgba(209,116,210,0.3);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.story-arrow:hover {
+    background: var(--primary);
+    transform: translateY(-50%) scale(1.08);
+    border-color: white;
+    box-shadow: 0 0 25px rgba(209,116,210,0.3);
+}
+
+.story-arrow-left { left: 10px; }
+.story-arrow-right { right: 10px; }
+
+/* ===== BOTTOM - COMPACT ===== */
+.story-bottom-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+}
+
+.story-info {
+    text-align: center;
+    padding: 0.08rem 0.3rem;
+}
+
+#storyTitle {
+    font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #fff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#storyTitle i {
+    color: var(--accent);
+    font-size: 0.7em;
+    -webkit-text-fill-color: var(--accent);
+}
+
+#storyDescription {
+    font-size: clamp(0.65rem, 0.8vw, 0.85rem);
+    line-height: 1.4;
+    color: rgba(255,255,255,0.7);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* ===== THUMBNAILS ===== */
+.story-thumbnails-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.05rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.story-thumbnails-wrapper::-webkit-scrollbar {
+    height: 3px;
+}
+
+.story-thumbnails-wrapper::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+}
+
+.story-thumbnails-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 4px;
+}
+
+.story-thumbnails {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    padding: 0.05rem 0;
+    flex-wrap: nowrap;
+}
+
+.story-thumbnail {
+    flex: 0 0 auto;
+    padding: 0.12rem 0.6rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: rgba(255,255,255,0.03);
+    text-align: center;
+    min-width: 40px;
+}
+
+.story-thumbnail:hover {
+   transform: translateY(-3px) scale(1.30); 
+    background: rgba(209,116,210,0.06);
+}
+
+.story-thumbnail.active {
+    border-color: var(--primary);
+    background: rgba(209,116,210,0.12);
+    box-shadow: 0 4px 20px rgba(209,116,210,0.15);
+}
+
+.story-thumbnail .thumb-icon {
+    display: block;
+    font-size: clamp(0.6rem, 0.7vw, 0.7rem);
+}
+
+.story-thumbnail .thumb-num {
+    display: block;
+    font-size: clamp(0.45rem, 0.55vw, 0.55rem);
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+}
+
+.story-thumbnail.active .thumb-num {
+    color: var(--primary);
+}
+
+.story-thumbnail .thumb-label {
+    display: block;
+    font-size: clamp(0.35rem, 0.45vw, 0.45rem);
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.story-thumbnail.active .thumb-label {
+    color: rgba(255,255,255,0.8);
+}
+
+/* ===== PROGRESS ===== */
+.story-progress {
+    text-align: center;
+    padding: 0.05rem 0;
+}
+
+.story-progress span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 0.06rem 1.1rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: clamp(0.5rem, 0.6vw, 0.65rem);
+    box-shadow: 0 4px 20px rgba(209,116,210,0.15);
+}
+
+.story-progress span i {
+    font-size: 0.55rem;
+    color: var(--accent);
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .story-wrapper {
+        min-height: auto;
+        padding: 0.2rem 0.8rem;
+    }
+    .story-image-container {
+        max-height: 45vh;
+        min-height: 120px;
+    }
+    #storyTitle {
+        font-size: 0.95rem;
+    }
+    #storyDescription {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-wrapper {
+        padding: 0.15rem 0.5rem;
+        min-height: auto;
+    }
+    .story-header h2 {
+        font-size: 0.95rem;
+    }
+    .story-header p {
+        font-size: 0.55rem;
+    }
+    .story-header-icon {
+        font-size: 1.1rem;
+    }
+    .story-image-container {
+        max-height: 38vh;
+        min-height: 100px;
+        border-width: 2px;
+    }
+    .story-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 0.65rem;
+    }
+    .story-arrow-left { left: 6px; }
+    .story-arrow-right { right: 6px; }
+    #storyTitle {
+        font-size: 0.85rem;
+    }
+    #storyDescription {
+        font-size: 0.65rem;
+    }
+    .story-thumbnail {
+        min-width: 34px;
+        padding: 0.1rem 0.45rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.55rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.45rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.35rem;
+    }
+    .story-progress span {
+        font-size: 0.55rem;
+        padding: 0.06rem 0.8rem;
+    }
+    .story-chapter-badge {
+        padding: 0.1rem 0.6rem;
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-wrapper {
+        padding: 0.1rem 0.3rem;
+        min-height: auto;
+    }
+    .story-image-container {
+        max-height: 30vh;
+        min-height: 80px;
+        border-width: 2px;
+        border-radius: 10px;
+    }
+    .story-arrow {
+        width: 22px;
+        height: 22px;
+        font-size: 0.5rem;
+    }
+    .story-arrow-left { left: 4px; }
+    .story-arrow-right { right: 4px; }
+    #storyTitle {
+        font-size: 0.7rem;
+    }
+    #storyDescription {
+        font-size: 0.55rem;
+        line-height: 1.2;
+    }
+    .story-thumbnail {
+        min-width: 28px;
+        padding: 0.08rem 0.3rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.5rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.4rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.3rem;
+    }
+    .story-progress span {
+        font-size: 0.5rem;
+        padding: 0.05rem 0.6rem;
+    }
+    .story-chapter-badge {
+        padding: 0.08rem 0.5rem;
+        font-size: 0.45rem;
+    }
+    .story-header h2 {
+        font-size: 0.85rem;
+    }
+    .story-header p {
+        font-size: 0.5rem;
+    }
+    .story-header-icon {
+        font-size: 1rem;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .story-wrapper {
+        min-height: calc(100vh - 50px);
+        padding: 0.1rem 0.6rem;
+    }
+    .story-header h2 {
+        font-size: 0.85rem;
+        margin: 0;
+    }
+    .story-header p {
+        font-size: 0.55rem;
+        margin: 0;
+    }
+    .story-header-icon {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+    .story-image-container {
+        max-height: 38vh;
+        min-height: 90px;
+    }
+    .story-bottom-section {
+        gap: 0.08rem;
+    }
+    #storyTitle {
+        font-size: 0.7rem;
+    }
+    #storyDescription {
+        font-size: 0.6rem;
+        line-height: 1.2;
+    }
+    .story-thumbnail {
+        min-width: 28px;
+        padding: 0.08rem 0.35rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.5rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.4rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.3rem;
+    }
+    .story-progress span {
+        font-size: 0.5rem;
+        padding: 0.05rem 0.6rem;
+    }
+    .story-arrow {
+        width: 22px;
+        height: 22px;
+        font-size: 0.5rem;
+    }
+}
+
+/* ============================================================ */
+/*  RESPONSIVE BREAKPOINTS                                      */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .story-wrapper {
+        min-height: auto;
+        padding: 0.2rem 0.8rem;
+        justify-content: flex-start;
+    }
+    .story-image-container {
+        max-height: 35vh;
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-wrapper {
+        padding: 0.15rem 0.5rem;
+        min-height: auto;
+    }
+    .story-header h2 {
+        font-size: 0.9rem;
+    }
+    .story-header p {
+        font-size: 0.55rem;
+    }
+    .story-image-container {
+        max-height: 28vh;
+        min-height: 90px;
+    }
+    .story-arrow {
+        width: 24px;
+        height: 24px;
+        font-size: 0.5rem;
+    }
+    .story-arrow-left { left: 4px; }
+    .story-arrow-right { right: 4px; }
+    #storyTitle {
+        font-size: 0.75rem;
+    }
+    #storyDescription {
+        font-size: 0.6rem;
+    }
+    .story-thumbnail {
+        min-width: 32px;
+        padding: 0.1rem 0.4rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.5rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.4rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.3rem;
+    }
+    .story-progress span {
+        font-size: 0.5rem;
+        padding: 0.05rem 0.7rem;
+    }
+    .story-chapter-badge {
+        padding: 0.08rem 0.5rem;
+        font-size: 0.45rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-wrapper {
+        padding: 0.1rem 0.3rem;
+        min-height: auto;
+    }
+    .story-image-container {
+        max-height: 22vh;
+        min-height: 70px;
+    }
+    .story-arrow {
+        width: 20px;
+        height: 20px;
+        font-size: 0.4rem;
+    }
+    .story-arrow-left { left: 3px; }
+    .story-arrow-right { right: 3px; }
+    #storyTitle {
+        font-size: 0.65rem;
+    }
+    #storyDescription {
+        font-size: 0.5rem;
+        line-height: 1.2;
+    }
+    .story-thumbnail {
+        min-width: 28px;
+        padding: 0.05rem 0.3rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.4rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.35rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.25rem;
+    }
+    .story-progress span {
+        font-size: 0.45rem;
+        padding: 0.05rem 0.5rem;
+    }
+    .story-chapter-badge {
+        padding: 0.05rem 0.4rem;
+        font-size: 0.4rem;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .story-wrapper {
+        min-height: calc(100vh - 55px);
+        padding: 0.1rem 0.6rem;
+    }
+    .story-header h2 {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+    .story-header p {
+        font-size: 0.5rem;
+        margin: 0;
+    }
+    .story-header-icon {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+    .story-image-container {
+        max-height: 32vh;
+        min-height: 80px;
+    }
+    .story-bottom-section {
+        gap: 0.1rem;
+    }
+    #storyTitle {
+        font-size: 0.6rem;
+    }
+    #storyDescription {
+        font-size: 0.5rem;
+        line-height: 1.2;
+    }
+    .story-thumbnail {
+        min-width: 26px;
+        padding: 0.05rem 0.3rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.4rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.35rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.25rem;
+    }
+    .story-progress span {
+        font-size: 0.45rem;
+        padding: 0.05rem 0.5rem;
+    }
+    .story-arrow {
+        width: 20px;
+        height: 20px;
+        font-size: 0.4rem;
+    }
+}
+
+/* ============================================================ */
+/*  MONSTERS PAGE - +40% ZOOM IN                              */
+/* ============================================================ */
+
+/* Container - Palakihin ang gap */
+.monster-grid {
+    gap: 1.5rem !important;
+    margin: 0.5rem 0 !important;
+}
+
+/* Monster Cards - Palakihin */
+.monster-card {
+    padding: 1.3rem !important;
+    border-radius: 20px !important;
+    border-width: 3px !important;
+}
+
+
+
+.monster-card img {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.monster-card h4 {
+    font-size: 1.15rem !important;
+    margin: 0.5rem 0 0.2rem !important;
+}
+
+.monster-card p {
+    font-size: 0.9rem !important;
+}
+
+/* Stage Group Titles - Palakihin */
+.stage-group-title {
+    font-size: clamp(1.3rem, 1.8vw, 1.6rem) !important;
+    margin: 1.6rem 0 0.8rem !important;
+    gap: 10px !important;
+}
+
+/* Section Header - Palakihin */
+.section-header h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem) !important;
+}
+
+.section-header p {
+    font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .monster-grid {
+        gap: 1.2rem !important;
+    }
+    .monster-card {
+        padding: 1rem !important;
+    }
+    .monster-card img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .monster-card h4 {
+        font-size: 1rem !important;
+    }
+    .monster-card p {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .monster-grid {
+        gap: 0.9rem !important;
+    }
+    .monster-card {
+        padding: 0.8rem !important;
+        border-radius: 14px !important;
+    }
+    .monster-card img {
+        width: 65px !important;
+        height: 65px !important;
+    }
+    .monster-card h4 {
+        font-size: 0.9rem !important;
+    }
+    .monster-card p {
+        font-size: 0.75rem !important;
+    }
+    .stage-group-title {
+        font-size: 1.15rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .monster-grid {
+        gap: 0.6rem !important;
+    }
+    .monster-card {
+        padding: 0.5rem !important;
+        border-radius: 12px !important;
+    }
+    .monster-card img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .monster-card h4 {
+        font-size: 0.8rem !important;
+    }
+    .monster-card p {
+        font-size: 0.65rem !important;
+    }
+    .stage-group-title {
+        font-size: 1rem !important;
+        margin: 0.8rem 0 0.4rem !important;
+    }
+    .section-header h2 {
+        font-size: 1.4rem !important;
+    }
+}
+
+.section-header p {
+    font-size: clamp(0.85rem, 1vw, 0.98rem) !important;
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .monster-grid {
+        gap: 0.85rem !important;
+    }
+    .monster-card {
+        padding: 0.65rem !important;
+    }
+    .monster-card img {
+        width: 62px !important;
+        height: 62px !important;
+    }
+    .monster-card h4 {
+        font-size: 0.82rem !important;
+    }
+    .monster-card p {
+        font-size: 0.66rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .monster-grid {
+        gap: 0.6rem !important;
+    }
+    .monster-card {
+        padding: 0.5rem !important;
+    }
+    .monster-card img {
+        width: 52px !important;
+        height: 52px !important;
+    }
+    .monster-card h4 {
+        font-size: 0.72rem !important;
+    }
+    .monster-card p {
+        font-size: 0.6rem !important;
+    }
+    .stage-group-title {
+        font-size: 0.92rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .monster-grid {
+        gap: 0.4rem !important;
+    }
+    .monster-card {
+        padding: 0.35rem !important;
+    }
+    .monster-card img {
+        width: 42px !important;
+        height: 42px !important;
+    }
+    .monster-card h4 {
+        font-size: 0.62rem !important;
+    }
+    .monster-card p {
+        font-size: 0.52rem !important;
+    }
+}
+
+
+.story-arrow-left { left: 12px !important; }
+.story-arrow-right { right: 12px !important; }
+
+/* ===== STORY INFO ===== */
+.story-info {
+    padding: 0.3rem 0.5rem !important;
+}
+
+#storyTitle {
+    font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+}
+
+#storyDescription {
+    font-size: clamp(0.8rem, 1vw, 1rem) !important;
+    max-width: 700px !important;
+}
+
+/* ===== THUMBNAILS ===== */
+.story-thumbnails {
+    gap: 0.5rem !important;
+}
+
+.story-thumbnail {
+    padding: 0.18rem 0.8rem !important;
+    min-width: 48px !important;
+}
+
+.story-thumbnail .thumb-icon {
+    font-size: clamp(0.7rem, 0.85vw, 0.85rem) !important;
+}
+
+.story-thumbnail .thumb-num {
+    font-size: clamp(0.45rem, 0.6vw, 0.6rem) !important;
+}
+
+.story-thumbnail .thumb-label {
+    font-size: clamp(0.4rem, 0.55vw, 0.52rem) !important;
+}
+
+/* ===== PROGRESS ===== */
+.story-progress span {
+    font-size: clamp(0.6rem, 0.7vw, 0.7rem) !important;
+    padding: 0.1rem 1.2rem !important;
+}
+
+/* ============================================================ */
+/*  RESPONSIVE BREAKPOINTS                                      */
+/* ============================================================ */
+
+/* Desktop 1366x768 */
+@media (max-width: 1366px) {
+    .story-image-container {
+        max-height: 47vh !important;
+        min-height: 150px !important;
+    }
+    .story-main-image {
+        max-height: 47vh !important;
+    }
+}
+
+/* Laptops */
+@media (max-width: 1280px) and (max-height: 800px) {
+    .story-wrapper {
+        min-height: calc(100vh - 55px) !important;
+    }
+    .story-image-container {
+        max-height: 44vh !important;
+        min-height: 140px !important;
+    }
+    .story-main-image {
+        max-height: 44vh !important;
+    }
+    #storyDescription {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .story-wrapper {
+        min-height: auto !important;
+        padding: 0.3rem 1rem !important;
+    }
+    .story-image-container {
+        max-height: 44vh !important;
+        min-height: 140px !important;
+    }
+    .story-main-image {
+        max-height: 44vh !important;
+    }
+    .story-thumbnail {
+        min-width: 40px !important;
+        padding: 0.15rem 0.6rem !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .story-wrapper {
+        padding: 0.2rem 0.6rem !important;
+        min-height: auto !important;
+    }
+    .story-header h2 {
+        font-size: 1.1rem !important;
+    }
+    .story-header p {
+        font-size: 0.65rem !important;
+    }
+    .story-image-container {
+        max-height: 33vh !important;
+        min-height: 110px !important;
+    }
+    .story-main-image {
+        max-height: 33vh !important;
+    }
+    .story-arrow {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.6rem !important;
+    }
+    .story-arrow-left { left: 6px !important; }
+    .story-arrow-right { right: 6px !important; }
+    #storyTitle {
+        font-size: 0.95rem !important;
+    }
+    #storyDescription {
+        font-size: 0.75rem !important;
+    }
+    .story-thumbnail {
+        min-width: 34px !important;
+        padding: 0.12rem 0.5rem !important;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.55rem !important;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.45rem !important;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.35rem !important;
+    }
+    .story-progress span {
+        font-size: 0.6rem !important;
+        padding: 0.08rem 0.9rem !important;
+    }
+    .story-chapter-badge {
+        padding: 0.12rem 0.7rem !important;
+        font-size: 0.55rem !important;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+    .story-wrapper {
+        padding: 0.15rem 0.4rem !important;
+    }
+    .story-image-container {
+        max-height: 28vh !important;
+        min-height: 90px !important;
+    }
+    .story-main-image {
+        max-height: 28vh !important;
+    }
+    .story-arrow {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.55rem !important;
+    }
+    .story-arrow-left { left: 4px !important; }
+    .story-arrow-right { right: 4px !important; }
+    #storyTitle {
+        font-size: 0.85rem !important;
+    }
+    #storyDescription {
+        font-size: 0.65rem !important;
+    }
+    .story-thumbnail {
+        min-width: 30px !important;
+        padding: 0.1rem 0.35rem !important;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.5rem !important;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.4rem !important;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.32rem !important;
+    }
+    .story-progress span {
+        font-size: 0.55rem !important;
+        padding: 0.08rem 0.7rem !important;
+    }
+    .story-chapter-badge {
+        padding: 0.1rem 0.6rem !important;
+        font-size: 0.5rem !important;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .story-wrapper {
+        min-height: calc(100vh - 55px) !important;
+        padding: 0.15rem 0.7rem !important;
+    }
+    .story-header h2 {
+        font-size: 0.95rem !important;
+        margin: 0 !important;
+    }
+    .story-header p {
+        font-size: 0.6rem !important;
+        margin: 0 !important;
+    }
+    .story-header-icon {
+        font-size: 1.1rem !important;
+        margin-bottom: 0 !important;
+    }
+    .story-image-container {
+        max-height: 38vh !important;
+        min-height: 100px !important;
+    }
+    .story-main-image {
+        max-height: 38vh !important;
+    }
+    .story-bottom-section {
+        gap: 0.1rem !important;
+    }
+    #storyTitle {
+        font-size: 0.75rem !important;
+    }
+    #storyDescription {
+        font-size: 0.65rem !important;
+        line-height: 1.2 !important;
+    }
+    .story-thumbnail {
+        min-width: 28px !important;
+        padding: 0.1rem 0.4rem !important;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.5rem !important;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.4rem !important;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.32rem !important;
+    }
+    .story-progress span {
+        font-size: 0.55rem !important;
+        padding: 0.08rem 0.7rem !important;
+    }
+    .story-arrow {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.55rem !important;
+    }
+}
+
+
+/* ============================================================ */
+/*  VIDEO BACKGROUND - HINDI NASISIRA ANG DESIGN              */
+/* ============================================================ */
+
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Transparent overlay para kita ang video pero readable ang text */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(65, 38, 83, 0.2); /* 20% opacity lang */
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Siguraduhin na ang lahat ng content ay nasa ibabaw ng video */
+.navbar,
+.main-content,
+.section,
+.container,
+.footer {
+    position: relative;
+    z-index: 10;
+}
+
+/* Siguraduhin na ang mga cards ay may background para readable */
+.monster-card,
+.member-card,
+.mission-card,
+.story-slideshow,
+.featured-content,
+.goal-content,
+.learning-progress,
+.overlay-card,
+.gate-card,
+.explanation-card,
+.victory-card {
+    background: rgba(65, 38, 83, 0.85) !important;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(209,116,210,0.1);
+}
+
+/* Hindi na natin binabago ang ibang styles - mananatili sila! */
+
+/* ============================================================ */
+/*  FIX: I-ADJUST ANG SPACING PARA MAIBALIK SA DATI          */
+/* ============================================================ */
+
+/* Siguraduhin na ang main content ay nasa tamang position */
+.main-content {
+     margin-top: 45px !important;  /* Mas maliit = mas mataas ang content */
+    padding: 0.1rem 0.5rem !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Ibalik sa dati ang container padding */
+.container {
+    padding: 0.2rem 0.5rem !important;
+}
+
+/* Ibalik sa dati ang home container */
+.home-container {
+    padding: 0.3rem 1.2rem !important;
+    min-height: calc(100vh - 62px) !important;
+}
+
+/* Ibalik sa dati ang story wrapper */
+.story-wrapper {
+    padding: 0.2rem 1rem !important;
+    min-height: calc(100vh - 65px) !important;
+}
+
+/* Ibalik sa dati ang section headers */
+.section-header {
+    margin-bottom: 0.8rem !important;
+}
+
+/* Siguraduhin na ang video ay nasa likod lang */
+#bgVideo {
+    z-index: 0 !important;
+}
+
+body::before {
+    z-index: 1 !important;
+}
+
+/* Lahat ng content ay nasa ibabaw */
+.section {
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.navbar {
+    z-index: 1000 !important;
+}
+
+/* Ibalik sa dati ang hero spacing */
+.hero {
+    min-height: auto !important;
+    padding: 0.3rem 0 !important;
+}
+
+/* Ibalik sa dati ang story spacing */
+.story-image-container {
+    max-height: 45vh !important;
+    min-height: 140px !important;
+}
+
+/* ============================================================ */
+/*  ITAAS PA ANG LAHAT NG CONTENT - MAS MALAPIT SA NAV        */
+/* ============================================================ */
+
+/* Mas bawasan ang margin-top ng main content */
+.main-content {
+    margin-top: 30px !important;  /* Mas maliit = mas mataas */
+    padding: 0.05rem 0.5rem !important;
+}
+
+/* Mas bawasan ang padding ng containers */
+.container {
+    padding: 0.05rem 0.5rem !important;
+}
+
+.home-container {
+    padding: 0.05rem 1.2rem !important;
+    min-height: calc(100vh - 45px) !important;
+}
+
+.story-wrapper {
+    padding: 0.05rem 1rem !important;
+    min-height: calc(100vh - 45px) !important;
+}
+
+/* Mas bawasan ang spacing ng section headers */
+.section-header {
+    margin-bottom: 0.2rem !important;
+}
+
+.section-header h2 {
+    font-size: clamp(1.2rem, 2.2vw, 1.8rem) !important;
+    margin-bottom: 0.05rem !important;
+}
+
+.section-header p {
+    font-size: clamp(0.7rem, 0.8vw, 0.85rem) !important;
+    margin-bottom: 0.1rem !important;
+}
+
+/* Mas bawasan ang hero spacing */
+.hero {
+    padding: 0.05rem 0 !important;
+    min-height: auto !important;
+}
+
+.hero h1 {
+    font-size: clamp(1.6rem, 3vw, 2.5rem) !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.hero p {
+    font-size: clamp(0.75rem, 0.9vw, 0.9rem) !important;
+    margin: 0.2rem 0 !important;
+}
+
+.hero-stats {
+    gap: 0.8rem !important;
+    margin: 0.1rem 0 !important;
+}
+
+/* Mas bawasan ang story spacing */
+.story-header {
+    margin-bottom: 0.15rem !important;
+    padding: 0.05rem 0 !important;
+}
+
+.story-header h2 {
+    font-size: clamp(1rem, 1.8vw, 1.4rem) !important;
+    margin: 0 !important;
+}
+
+.story-header p {
+    font-size: clamp(0.55rem, 0.65vw, 0.7rem) !important;
+    margin: 0 !important;
+}
+
+.story-image-container {
+    max-height: 50vh !important;
+    min-height: 120px !important;
+}
+
+.story-bottom-section {
+    gap: 0.05rem !important;
+    padding-top: 0.05rem !important;
+}
+
+#storyTitle {
+    font-size: clamp(0.8rem, 1.1vw, 1rem) !important;
+}
+
+#storyDescription {
+    font-size: clamp(0.6rem, 0.75vw, 0.8rem) !important;
+}
+
+.story-thumbnails {
+    gap: 0.2rem !important;
+    padding: 0.05rem 0 !important;
+}
+
+/* Mas bawasan ang monsters spacing */
+.monster-grid {
+    gap: 0.4rem !important;
+    margin: 0.1rem 0 !important;
+}
+
+.monster-card {
+    padding: 0.4rem !important;
+}
+
+.monster-card img {
+    width: 55px !important;
+    height: 55px !important;
+}
+
+.stage-group-title {
+    font-size: clamp(0.8rem, 1vw, 1rem) !important;
+    margin: 0.3rem 0 0.15rem !important;
+}
+
+/* Mas bawasan ang about spacing */
+.about-grid {
+    gap: 0.8rem !important;
+}
+
+.about-grid h3 {
+    font-size: clamp(1rem, 1.5vw, 1.4rem) !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.about-grid p {
+    font-size: clamp(0.8rem, 0.9vw, 0.9rem) !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.about-grid h4 {
+    font-size: clamp(0.8rem, 1vw, 1rem) !important;
+    margin: 0.3rem 0 0.15rem !important;
+}
+
+.features-list li {
+    padding: 0.15rem 0 !important;
+    font-size: clamp(0.75rem, 0.85vw, 0.85rem) !important;
+}
+
+.team-grid {
+    gap: 0.5rem !important;
+}
+
+.member-card {
+    padding: 0.5rem !important;
+}
+
+.member-avatar {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.3rem !important;
+    margin: 0 auto 0.2rem !important;
+}
+
+/* Mas bawasan ang more spacing */
+.goal-grid {
+    gap: 0.8rem !important;
+}
+
+.goal-content h2 {
+    font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.goal-content p {
+    font-size: clamp(0.75rem, 0.85vw, 0.85rem) !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.goal-highlight {
+    padding: 0.4rem !important;
+    margin: 0.2rem 0 !important;
+}
+
+.goal-stats {
+    gap: 0.5rem !important;
+    margin-top: 0.2rem !important;
+}
+
+.goal-stat-item {
+    padding: 0.4rem !important;
+}
+
+.goal-stat-number {
+    font-size: clamp(1rem, 1.3vw, 1.2rem) !important;
+}
+
+.mission-grid {
+    gap: 0.5rem !important;
+    margin: 0.3rem 0 !important;
+}
+
+.mission-card {
+    padding: 0.6rem !important;
+}
+
+.mission-icon {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 0.9rem !important;
+    margin: 0 auto 0.3rem !important;
+}
+
+.learning-progress {
+    padding: 0.5rem !important;
+    margin: 0.3rem 0 !important;
+}
+
+.progress-label {
+    font-size: 0.65rem !important;
+    margin: 0.15rem 0 0.05rem !important;
+}
+
+.knowledge-tags {
+    gap: 0.2rem !important;
+    margin: 0.2rem 0 !important;
+}
+
+.knowledge-tag {
+    padding: 0.1rem 0.5rem !important;
+    font-size: 0.5rem !important;
+}
+
+/* Team section spacing */
+.about-team h3 {
+    margin-bottom: 0.5rem !important;
+}
+
+.about-team .team-subtitle {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem !important;
+}
+
+
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 1024px) {
+    .story-wrapper {
+        min-height: auto;
+        padding: 0.05rem 0.8rem;
+    }
+    .story-image-container {
+        max-height: 38vh;
+        min-height: 120px;
+    }
+    #storyTitle {
+        font-size: 1.2rem;
+    }
+    #storyDescription {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-wrapper {
+        padding: 0.05rem 0.5rem;
+        min-height: auto;
+    }
+    .story-header h2 {
+        font-size: 1.2rem;
+    }
+    .story-header p {
+        font-size: 0.7rem;
+    }
+    .story-header-icon {
+        font-size: 1.4rem;
+    }
+    .story-image-container {
+        max-height: 30vh;
+        min-height: 100px;
+    }
+    .story-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
+    .story-arrow-left { left: 6px; }
+    .story-arrow-right { right: 6px; }
+    #storyTitle {
+        font-size: 1rem;
+    }
+    #storyDescription {
+        font-size: 0.8rem;
+    }
+    .story-thumbnail {
+        min-width: 40px;
+        padding: 0.12rem 0.6rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.7rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.55rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.45rem;
+    }
+    .story-progress span {
+        font-size: 0.65rem;
+        padding: 0.08rem 1.1rem;
+    }
+    .story-chapter-badge {
+        padding: 0.15rem 0.9rem;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-wrapper {
+        padding: 0.05rem 0.3rem;
+        min-height: auto;
+    }
+    .story-image-container {
+        max-height: 24vh;
+        min-height: 80px;
+    }
+    .story-arrow {
+        width: 26px;
+        height: 26px;
+        font-size: 0.6rem;
+    }
+    .story-arrow-left { left: 4px; }
+    .story-arrow-right { right: 4px; }
+    #storyTitle {
+        font-size: 0.85rem;
+    }
+    #storyDescription {
+        font-size: 0.65rem;
+        line-height: 1.3;
+    }
+    .story-thumbnail {
+        min-width: 32px;
+        padding: 0.1rem 0.4rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.6rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.5rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.35rem;
+    }
+    .story-progress span {
+        font-size: 0.6rem;
+        padding: 0.08rem 0.8rem;
+    }
+    .story-chapter-badge {
+        padding: 0.1rem 0.6rem;
+        font-size: 0.5rem;
+    }
+    .story-header h2 {
+        font-size: 1rem;
+    }
+    .story-header p {
+        font-size: 0.6rem;
+    }
+    .story-header-icon {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .story-wrapper {
+        min-height: calc(100vh - 50px);
+        padding: 0.05rem 0.6rem;
+    }
+    .story-header h2 {
+        font-size: 1rem;
+        margin: 0;
+    }
+    .story-header p {
+        font-size: 0.65rem;
+        margin: 0;
+    }
+    .story-header-icon {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+    .story-image-container {
+        max-height: 34vh;
+        min-height: 90px;
+    }
+    .story-bottom-section {
+        gap: 0.1rem;
+    }
+    #storyTitle {
+        font-size: 0.85rem;
+    }
+    #storyDescription {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+    .story-thumbnail {
+        min-width: 32px;
+        padding: 0.1rem 0.4rem;
+    }
+    .story-thumbnail .thumb-icon {
+        font-size: 0.6rem;
+    }
+    .story-thumbnail .thumb-num {
+        font-size: 0.5rem;
+    }
+    .story-thumbnail .thumb-label {
+        font-size: 0.35rem;
+    }
+    .story-progress span {
+        font-size: 0.6rem;
+        padding: 0.08rem 0.8rem;
+    }
+    .story-arrow {
+        width: 26px;
+        height: 26px;
+        font-size: 0.6rem;
+    }
+}
+/* ============================================================ */
+/*  STORY IMAGES - FIT LANG AT MAY BORDER                     */
+/* ============================================================ */
+
+/* Ibalik sa normal ang aspect ratio */
+.story-image-container {
+    aspect-ratio: auto !important;
+    max-height: 52vh !important;
+    min-height: 160px !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+    border: 3px solid var(--primary) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 0 30px rgba(209,116,210,0.2) !important;
+    background: rgba(0,0,0,0.3) !important;
+    overflow: hidden !important;
+}
+
+/* Adjust ang image para magkasya */
+.story-main-image {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Para mas maganda ang display */
+.story-image-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* ============================================================ */
+/*  RESPONSIVE                                                  */
+/* ============================================================ */
+
+@media (max-width: 768px) {
+    .story-image-container {
+        max-height: 35vh !important;
+        min-height: 120px !important;
+        border-width: 2px !important;
+        border-radius: 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-image-container {
+        max-height: 28vh !important;
+        min-height: 90px !important;
+        border-width: 2px !important;
+        border-radius: 10px !important;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .story-image-container {
+        max-height: 45vh !important;
+        min-height: 100px !important;
+    }
+}
+/* ============================================================ */
+/*  STORY - FIX LAST IMAGE (CHAPTER 6) FIT                    */
+/* ============================================================ */
+
+/* Para sa lahat ng story images - para mag-fit */
+.story-main-image {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Para sa last image (Chapter 6) - specific fix */
+#storyImage[src="6.png"] {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Siguraduhin na ang container ay tama */
+.story-image-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: rgba(0,0,0,0.2) !important;
+}
+
+/* Para sa lahat ng images, i-center */
+.story-image-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+/* ===== FORCE AUTOPLAY ===== */
+#bgVideo {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+/* ===== ABOUT PAGE ===== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 1rem;
+}
+
+/* LEFT SIDE - OUR STORY */
+.about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.about-left h3 {
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    margin-bottom: 0.5rem;
+    color: var(--light);
+}
+
+.about-left h3 span {
+    color: var(--primary);
+}
+
+.about-left p {
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.5rem;
+}
+
+.about-left h4 {
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    margin: 0.8rem 0 0.3rem;
+    color: var(--primary);
+}
+
+/* RIGHT SIDE - THE TEAM */
+.about-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-right h3 {
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    margin-bottom: 0.3rem;
+    color: var(--light);
+}
+
+.team-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* ===== MEMBER CARD ===== */
+.member-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(209, 116, 210, 0.1);
+    position: relative;  /* ← DINAGDAG para gumana ang z-index */
+}
+
+/* Hover effect - LUMALAKI ANG BUONG CARD */
+.member-card:hover {
+    transform: translateY(-5px) scale(1.30);  /* ← ITO ANG MAGPAPALAKI */
+    border-color: var(--primary);
+    background: rgba(209, 116, 210, 0.08);
+    box-shadow: 0 12px 35px rgba(209, 116, 210, 0.25);
+    z-index: 10;
+}
+
+.member-image {
+    width: 100%;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+    border: 2px solid rgba(209, 116, 210, 0.1);
+    transition: all 0.3s ease;
+}
+
+.member-image:hover {
+    border-color: var(--primary);
+    transform: scale(1.02);
+}
+
+.team-img-rect {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.member-card h4 {
+    font-size: 0.95rem;
+    color: var(--light);
+    margin-bottom: 0.1rem;
+}
+
+.member-card p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* FEATURES LIST */
+.features-list {
+    list-style: none;
+    padding: 0;
+}
+
+.features-list li {
+    padding: 0.4rem 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: clamp(0.85rem, 0.9vw, 0.95rem);
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+.features-list i {
+    font-size: 1.1rem;
+    color: var(--success);
+    min-width: 24px;
+}
+
+/* TECH STACK */
+.tech-stack {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.tech-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(209, 116, 210, 0.15);
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tech-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    background: rgba(209, 116, 210, 0.08);
+    box-shadow: 0 8px 25px rgba(209, 116, 210, 0.15);
+}
+
+.tech-card i {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.tech-card span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* MYSQL - RECTANGLE FULL WIDTH */
+.tech-card.mysql {
+    border-color: #4479A1;
+    background: rgba(68, 121, 161, 0.1);
+    width: 100%;
+    flex: 0 0 100%;
+    padding: 0.8rem;
+    border-radius: 12px;
+}
+
+.tech-card.mysql:hover {
+    background: rgba(68, 121, 161, 0.2);
+    border-color: #4479A1;
+}
+
+.tech-card.mysql i {
+    color: #4479A1;
+}
+
+.fa-html5 { color: #E34F26; }
+.fa-css3-alt { color: #1572B6; }
+.fa-js { color: #F7DF1E; }
+.fa-php { color: #777BB3; }
+.fa-database { color: #4479A1; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    .member-image {
+        height: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    .member-image {
+        height: 120px;
+    }
+    .tech-card {
+        min-width: 60px;
+        padding: 0.6rem 0.8rem;
+    }
+    .tech-card i {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    .member-image {
+        height: 100px;
+    }
+    .about-grid {
+        gap: 1rem;
+    }
+    .tech-card {
+        min-width: 50px;
+        padding: 0.4rem 0.6rem;
+    }
+    .tech-card i {
+        font-size: 1.5rem;
+    }
+    .features-list li {
+        font-size: 0.8rem;
+        padding: 0.3rem 0;
+    }
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        gap: 1.5rem;
+    }
+    .team-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+    .member-image {
+        height: 140px;
+    }
+    .tech-stack {
+        gap: 0.5rem;
+    }
+    .tech-card {
+        padding: 0.5rem 0.8rem;
+        min-width: 55px;
+    }
+    .tech-card i {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    .member-image {
+        height: 120px;
+    }
+    .features-list li {
+        font-size: 0.8rem;
+    }
+}
+/* ===== HOME PAGE - EXTRA READABLE ===== */
+
+/* BUONG HOME TEXT */
+.home-text * {
+    text-shadow: 
+        0 0 15px rgba(0, 0, 0, 1),
+        0 0 30px rgba(0, 0, 0, 0.9),
+        0 0 50px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* WELCOME TO */
+.home-text h1 {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 20px rgba(0, 0, 0, 1),
+        0 0 40px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* BRAINSTORM BATTLE - YELLOW */
+.home-text h1 span {
+    color: #f1c40f !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #f1c40f !important;
+    text-shadow: 
+        0 0 20px rgba(241, 196, 15, 0.6),
+        0 0 40px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* DESCRIPTION */
+.home-text p {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 10px rgba(0, 0, 0, 1),
+        0 0 25px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* STATS NUMBERS */
+.stat-number {
+    color: #D174D2 !important;
+    text-shadow: 
+        0 0 12px rgba(209, 116, 210, 0.5),
+        0 0 25px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(0, 0, 0, 0.7) !important;
+    font-weight: 700 !important;
+}
+
+/* STATS LABELS */
+.stat-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-shadow: 
+        0 0 8px rgba(0, 0, 0, 1),
+        0 0 20px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* BADGE - Official Game */
+.home-badge {
+    text-shadow: 
+        0 0 8px rgba(0, 0, 0, 1),
+        0 0 20px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* PLAY NOW BUTTON */
+.btn-play {
+    text-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 4px 20px rgba(209, 116, 210, 0.3) !important;
+}
+
+
+/* ===== HOME PAGE - LIGHT WHITE SHADOW ===== */
+
+/* BUONG HOME TEXT */
+.home-text * {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* WELCOME TO */
+.home-text h1 {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.4),
+        0 0 40px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* BRAINSTORM BATTLE - YELLOW WITH LIGHT SHADOW */
+.home-text h1 span {
+    color: #f1c40f !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #f1c40f !important;
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.5),
+        0 0 30px rgba(241, 196, 15, 0.3),
+        0 0 50px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* DESCRIPTION */
+.home-text p {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* STATS NUMBERS */
+.stat-number {
+    color: #D174D2 !important;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(209, 116, 210, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.7) !important;
+    font-weight: 700 !important;
+}
+
+/* STATS LABELS */
+.stat-label {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* BADGE - Official Game */
+.home-badge {
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* PLAY NOW BUTTON */
+.btn-play {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 4px 20px rgba(209, 116, 210, 0.3) !important;
+}
+
+/* ===== LAHAT NG PAGES - LIGHT WHITE SHADOW ===== */
+
+/* ===== ABOUT PAGE ===== */
+.about-grid h3,
+.about-grid p,
+.about-grid h4,
+.features-list li,
+.member-card h4,
+.member-card p,
+.team-subtitle,
+.tech-card span {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== STORY PAGE ===== */
+.story-header h2,
+.story-header p,
+#storyTitle,
+#storyDescription,
+.story-chapter-badge,
+.story-progress span,
+.story-thumbnail .thumb-num,
+.story-thumbnail .thumb-label {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== MONSTERS PAGE ===== */
+.monster-card h4,
+.monster-card p,
+.stage-group-title,
+.section-header h2,
+.section-header p {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== MORE PAGE ===== */
+.goal-content h2,
+.goal-content p,
+.goal-highlight p,
+.goal-stat-number,
+.goal-stat-item,
+.mission-card h3,
+.mission-card p,
+.learning-progress h3,
+.learning-progress h4,
+.progress-label,
+.knowledge-tag {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== SECTION HEADERS (LAHAT NG PAGES) ===== */
+.section-header h2,
+.section-header p {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== NAVIGATION ===== */
+.nav-link,
+.logo-text {
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-play,
+.btn-primary {
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(0, 0, 0, 0.5) !important;
+}
+/* ===== LAHAT NG TEXT SA LAHAT NG PAGES - WHITE SHADOW ===== */
+
+/* ABOUT PAGE */
+.about-grid h3,
+.about-grid p,
+.about-grid h4,
+.features-list li,
+.member-card h4,
+.member-card p,
+.team-subtitle,
+.tech-card span {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* STORY PAGE */
+.story-header h2,
+.story-header p,
+#storyTitle,
+#storyDescription,
+.story-chapter-badge,
+.story-progress span,
+.story-thumbnail .thumb-num,
+.story-thumbnail .thumb-label,
+.story-thumbnail .thumb-icon {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* MONSTERS PAGE */
+.monster-card h4,
+.monster-card p,
+.stage-group-title {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* MORE PAGE */
+.goal-content h2,
+.goal-content p,
+.goal-highlight p,
+.goal-stat-number,
+.goal-stat-item,
+.mission-card h3,
+.mission-card p,
+.learning-progress h3,
+.learning-progress h4,
+.progress-label,
+.knowledge-tag {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* SECTION HEADERS (LAHAT NG PAGES) */
+.section-header h2,
+.section-header p {
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 0, 0, 0.6) !important;
+}
+/* ===== STORY PAGE - PALAKIHIN NG 10% ANG LAHAT NG TEXT ===== */
+
+/* STORY HEADER */
+.story-header h2 {
+    font-size: clamp(1.2rem, 2vw, 1.6rem) !important; /* +10% */
+}
+
+.story-header p {
+    font-size: clamp(0.7rem, 0.8vw, 0.85rem) !important; /* +10% */
+}
+
+.story-header-icon {
+    font-size: 1.5rem !important; /* +10% */
+}
+
+/* STORY TITLE */
+#storyTitle {
+    font-size: clamp(1rem, 1.3vw, 1.2rem) !important; /* +10% */
+}
+
+/* STORY DESCRIPTION */
+#storyDescription {
+    font-size: clamp(0.75rem, 0.9vw, 0.95rem) !important; /* +10% */
+}
+
+/* STORY BADGE */
+.story-chapter-badge {
+    font-size: clamp(0.6rem, 0.75vw, 0.75rem) !important; /* +10% */
+}
+
+/* STORY PROGRESS */
+.story-progress span {
+    font-size: clamp(0.6rem, 0.7vw, 0.75rem) !important; /* +10% */
+}
+
+/* STORY THUMBNAILS */
+.story-thumbnail .thumb-icon {
+    font-size: clamp(0.7rem, 0.8vw, 0.8rem) !important; /* +10% */
+}
+
+.story-thumbnail .thumb-num {
+    font-size: clamp(0.5rem, 0.6vw, 0.6rem) !important; /* +10% */
+}
+
+.story-thumbnail .thumb-label {
+    font-size: clamp(0.45rem, 0.55vw, 0.55rem) !important; /* +10% */
+}
+
+/* STORY ARROWS */
+.story-arrow {
+    width: 38px !important; /* +10% */
+    height: 38px !important; /* +10% */
+    font-size: 0.9rem !important; /* +10% */
+}
+
+
+/* ============================================================ */
+/*  FOLLOWER CIRCLE - MOUSE INSIDE (CENTERED)                  */
+/* ============================================================ */
+
+#followerCircle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+    border: 3px solid rgba(209, 116, 210, 0.6);
+    box-shadow: 0 0 20px rgba(209, 116, 210, 0.2), inset 0 0 20px rgba(209, 116, 210, 0.05);
+    background: rgba(209, 116, 210, 0.05);
+    opacity: 0.85;
+    transition: none;
+    width: 40px;
+    height: 40px;
+    /* ITO ANG SUSI - para nasa gitna ang mouse */
+    margin-left: -20px;
+    margin-top: -20px;
+}
+
+/* Center dot - nasa gitna ng bilog (kung saan ang mouse) */
+#followerCircle .dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Crosshair lines */
+#followerCircle::before {
+    content: '';
+    position: absolute;
+    width: 25%;
+    height: 1.5px;
+    background: rgba(209, 116, 210, 0.3);
+    top: 50%;
+    left: 37.5%;
+}
+
+#followerCircle::after {
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 25%;
+    background: rgba(209, 116, 210, 0.3);
+    top: 37.5%;
+    left: 50%;
+}
+
+/* Hover effect */
+#followerCircle.active {
+    border-color: rgba(241, 196, 15, 0.8);
+    box-shadow: 0 0 40px rgba(241, 196, 15, 0.2), inset 0 0 40px rgba(241, 196, 15, 0.05);
+}
+
+/* Click effect */
+#followerCircle.clicking {
+    transform: scale(1.2);
+    border-color: #f1c40f;
+    box-shadow: 0 0 50px rgba(241, 196, 15, 0.4);
+}
+
+/* Hidden state */
+#followerCircle.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #followerCircle {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    #followerCircle {
+        width: 45px;
+        height: 45px;
+        margin-left: -22.5px;
+        margin-top: -22.5px;
+        border-width: 2px;
+        opacity: 0.6;
+    }
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    #followerCircle {
+        display: none !important;
+    }
+}
+
+
+
+
+
+/* ============================================================ */
+/*  LOGO.PNG - HOVER SCALE 1.30                                */
+/* ============================================================ */
+
+.logo-img {
+    height: 41px;
+    width: auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-img:hover {
+    transform: scale(1.50);
+    filter: drop-shadow(0 0 15px rgba(209, 116, 210, 0.6));
+    z-index: 10;
+}
+
+.logo-img:active {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px rgba(209, 116, 210, 0.8));
+}
+
+/* ===== STORY IMAGE - HOVER SCALE 1.30 ===== */
+.story-image-container {
+    transition: transform 0.2s ease !important;
+}
+
+.story-image-container:hover {
+    transform: scale(1.25) !important;
+}
+
+
+/* ============================================================ */
+/*  MISSION CARDS - HOVER SCALE 1.30                           */
+/* ============================================================ */
+
+.mission-card {
+    transition: transform 0.3s ease !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+}
+
+.mission-card:hover {
+    transform: scale(1.30) !important;
+    z-index: 10 !important;
+}
+
+/* ============================================================ */
+/*  STATS ITEMS - HOVER SCALE 1.30                             */
+/* ============================================================ */
+
+.stat-item {
+    transition: transform 0.3s ease !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.stat-item:hover {
+    transform: scale(1.30) !important;
+    z-index: 10 !important;
+    background: rgba(209, 116, 210, 0.15) !important;
+    border-color: #D174D2 !important;
+    box-shadow: 0 8px 25px rgba(209, 116, 210, 0.4) !important;
+}
+
+.stat-item:hover .stat-number {
+    text-shadow: 0 0 20px rgba(209, 116, 210, 0.8) !important;
+}
+
+.stat-item:hover .stat-label {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+}
+
+
+/* ============================================================ */
+/*  GOAL STATS - HOVER SCALE 1.30                              */
+/* ============================================================ */
+
+.goal-stat-item {
+    transition: transform 0.3s ease !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.goal-stat-item:hover {
+    transform: scale(1.30) !important;
+    z-index: 10 !important;
+    background: rgba(209, 116, 210, 0.15) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 25px rgba(209, 116, 210, 0.4) !important;
+}
+
+.goal-stat-item:hover .goal-stat-number {
+    text-shadow: 0 0 20px rgba(209, 116, 210, 0.8) !important;
+}
+
+/* ============================================================ */
+/*  GAME PREVIEW IMAGE - HOVER SCALE 1.30                      */
+/* ============================================================ */
+
+.home-image img {
+    transition: transform 0.3s ease !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.home-image img:hover {
+    transform: scale(1.30) !important;
+    z-index: 10 !important;
+    border-color: #D174D2 !important;
+    box-shadow: 0 12px 40px rgba(209, 116, 210, 0.6) !important;
+}
+
+/* ============================================================ */
+/*  HOME TITLE - HOVER SCALE 1.30                              */
+/* ============================================================ */
+
+.home-text h1 {
+    transition: transform 0.2s ease !important;
+    transform-origin: left center;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.home-text h1:hover {
+    transform: scale(1.25) !important;
+    z-index: 10 !important;
+}
+
+/* ============================================================ */
+/*  LOGO TEXT - HOVER SCALE 1.30                               */
+/* ============================================================ */
+
+.logo-text {
+    transition: transform 0.3s ease !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.logo-text:hover {
+    transform: scale(1.30) !important;
+    z-index: 10 !important;
+    text-shadow: 0 0 20px rgba(209, 116, 210, 0.8) !important;
+}
+
+
+/* ============================================================ */
+/*  MUTE BUTTON - HOVER SCALE 1.30                             */
+/* ============================================================ */
+
+#muteBtn {
+    transition: all 0.3s ease !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#muteBtn:hover {
+    transform: scale(1.30) !important;
+    z-index: 10 !important;
+    border-color: #D174D2 !important;
+    box-shadow: 0 0 25px rgba(209, 116, 210, 0.6) !important;
+}
+
+#muteBtn:active {
+    transform: scale(1.15) !important;
+}
+
+/* ============================================================ */
+/*  COLOR PALETTE VIEWER                                        */
+/* ============================================================ */
+
+/* ===== FLOATING BUTTON ===== */
+#paletteToggleBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #D174D2, #b158b2);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 9998;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(209, 116, 210, 0.5);
+}
+
+#paletteToggleBtn:hover {
+    transform: scale(1.15) rotate(15deg);
+    box-shadow: 0 8px 30px rgba(209, 116, 210, 0.8);
+    border-color: #f1c40f;
+}
+
+#paletteToggleBtn.active {
+    transform: rotate(180deg);
+    background: linear-gradient(135deg, #f1c40f, #e67e22);
+}
+
+/* ===== PALETTE PANEL ===== */
+#palettePanel {
+    position: fixed;
+    right: -400px;
+    bottom: 90px;
+    width: 360px;
+    max-height: 70vh;
+    background: rgba(46, 26, 58, 0.98);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid rgba(209, 116, 210, 0.4);
+    border-radius: 16px;
+    padding: 20px;
+    z-index: 9997;
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(209, 116, 210, 0.2);
+}
+
+#palettePanel.open {
+    right: 20px;
+}
+
+#palettePanel::-webkit-scrollbar {
+    width: 6px;
+}
+
+#palettePanel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+#palettePanel::-webkit-scrollbar-thumb {
+    background: #D174D2;
+    border-radius: 10px;
+}
+
+/* ===== PALETTE HEADER ===== */
+.palette-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(209, 116, 210, 0.2);
+}
+
+.palette-header h3 {
+    font-family: 'Orbitron', 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #D174D2;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.palette-close-btn {
+    background: rgba(255, 71, 87, 0.15);
+    border: 2px solid #ff4757;
+    color: #ff4757;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.palette-close-btn:hover {
+    background: #ff4757;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* ===== PALETTE SUBTITLE ===== */
+.palette-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* ===== COLOR GROUP ===== */
+.palette-group {
+    margin-bottom: 20px;
+}
+
+.palette-group-title {
+    font-size: 0.7rem;
+    color: #f1c40f;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===== COLOR ITEM ===== */
+.palette-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.palette-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(-5px);
+    border-color: rgba(209, 116, 210, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.palette-item.copied {
+    background: rgba(46, 204, 113, 0.15) !important;
+    border-color: #2ecc71 !important;
+}
+
+.palette-item.copied::after {
+    content: '✓ COPIED!';
+    position: absolute;
+    right: 10px;
+    color: #2ecc71;
+    font-size: 0.7rem;
+    font-weight: 700;
+    animation: copiedFade 1.5s ease;
+}
+
+@keyframes copiedFade {
+    0% { opacity: 0; transform: translateX(20px); }
+    20% { opacity: 1; transform: translateX(0); }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ===== COLOR SWATCH ===== */
+.palette-swatch {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.palette-item:hover .palette-swatch {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== COLOR INFO ===== */
+.palette-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.palette-name {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.palette-role {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+}
+
+.palette-hex {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #f1c40f;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* ===== PALETTE FOOTER ===== */
+.palette-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 2px solid rgba(209, 116, 210, 0.2);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.65rem;
+    font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    #paletteToggleBtn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    #palettePanel {
+        width: calc(100vw - 30px);
+        right: -100vw;
+        bottom: 75px;
+    }
+
+    #palettePanel.open {
+        right: 15px;
+    }
+
+    .palette-swatch {
+        width: 38px;
+        height: 38px;
+    }
+
+    .palette-name {
+        font-size: 0.75rem;
+    }
+
+    .palette-hex {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===== HIDDEN STATE ===== */
+#palettePanel:not(.open) {
+    pointer-events: none;
+}
+
+
+/* ===== HOME VIDEO - NO CONTROLS, CLEAN ===== */
+#homeVideo {
+    pointer-events: auto !important;
+}
+
+#homeVideo::-webkit-media-controls {
+    display: none !important;
+}
+
+#homeVideo::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+#homeVideo::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+#homeVideo::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+#homeVideo::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+
+<video 
+    id="bgVideo" 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    preload="auto"
+    disablepictureinpicture
+    disableremoteplayback
+    controlslist="nodownload noplaybackrate nofullscreen noremoteplayback">
+    <source src="bacckgroundvideo/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- ⭐ BACKGROUND MUSIC (MP3) -->
+<audio id="bgAudio" loop preload="auto">
+    <source src="bacckgroundvideo/video.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+    
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar">
+    <div class="logo" id="secretLogo" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+        <img src="logo.png" alt="Logo" class="logo-img" id="logoImage" style="cursor: pointer; height: 36px; width: auto;" onclick="goToAdmin()" onerror="this.src='https://via.placeholder.com/40x40?text=BB'">
+        <span class="logo-text" id="logoText" style="cursor: pointer;">BRAINSTORM BATTLE</span>
+        <button id="muteBtn" class="mute-btn" onclick="toggleMute()" title="Click to play music" style="background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:50%;width:36px;height:36px;color:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.3s ease;">
+            <i class="fas fa-volume-mute"></i>
+        </button>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+        <span class="nav-link active" onclick="showSection('home')"><i class="fas fa-home"></i> Home</span>
+        <span class="nav-link" onclick="showSection('about')"><i class="fas fa-info-circle"></i> About</span>
+        <span class="nav-link" onclick="showSection('story')"><i class="fas fa-book-open"></i> Story</span>
+        <span class="nav-link" onclick="showSection('monsters')"><i class="fas fa-dragon"></i> Monsters</span>
+        <span class="nav-link" onclick="showSection('more')"><i class="fas fa-plus-circle"></i> More</span>
+    </div>
+</nav>
+
+
+
+<!-- ===== FOLLOWER CIRCLE - MOUSE INSIDE ===== -->
+<div id="followerCircle">
+    <div class="dot"></div>
+</div>
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== HOME ===== -->
+<section id="home" class="section active-section">
+    <div class="home-wrapper">
+        <div class="home-content">
+            <!-- LEFT -->
+            <div class="home-text">
+                <div class="home-badge">
+                    <span class="badge-dot"></span> Official Game
+                </div>
+                <h1 style="color: #ffffff; text-shadow: 0 0 20px rgba(0,0,0,1), 0 0 40px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.7), 0 2px 5px rgba(0,0,0,1);">Welcome to <span style="color: #f1c40f; text-shadow: 0 0 20px rgba(241,196,15,0.6), 0 0 40px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.7), 0 2px 5px rgba(0,0,0,1);">BRAINSTORM BATTLE</span></h1>
+                <p>2D arcade survival game combining quizzes, monster combat, and Java typing battles.</p>
+                <div class="home-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Stages</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1500</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Enemies</span>
+                    </div>
+                </div>
+                <button class="btn-play" onclick="redirectToGame()">
+                    <i class="fas fa-play"></i> Play Now
+                </button>
+            </div>
+
+            <!-- RIGHT -->
+<div class="home-image" 
+     onmouseenter="playHomeVideo()" 
+     onmouseleave="stopHomeVideo()">
+    <video 
+        id="homeVideo" 
+        src="video_gameplay.mp4" 
+        muted 
+        loop 
+        playsinline 
+        preload="auto"
+        style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 16px; cursor: pointer;">
+        Your browser does not support the video tag.
+    </video>
+</div>
+        </div>
+    </div>
+</section>
+
+        <!-- ===== MONSTERS ===== -->
+        <section id="monsters" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Meet the <span>Monsters</span></h2>
+                    <p>All enemies you'll face in Brainstorm Battle</p>
+                </div>
+                <h3 class="stage-group-title"><i class="fas fa-book"></i> Stages 1-5: Quiz Mode</h3>
+                <div class="monster-grid">
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage1.png" alt="Stage 1"><h4>Stage 1</h4><p>CPU Guardian</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage2.png" alt="Stage 2"><h4>Stage 2</h4><p>RAM Wraith</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage3.png" alt="Stage 3"><h4>Stage 3</h4><p>Storage Beast</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage4.png" alt="Stage 4"><h4>Stage 4</h4><p>Mobo Monster</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage5.png" alt="Stage 5"><h4>Stage 5</h4><p>Port Protector</p></div>
+                </div>
+                <h3 class="stage-group-title" style="color:var(--secondary);"><i class="fas fa-exclamation-triangle"></i> Stages 6-10: Catch Mode</h3>
+                <div class="monster-grid">
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage6.png" alt="Stage 6"><h4>Stage 6</h4><p>Keyboard Keeper</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage7.png" alt="Stage 7"><h4>Stage 7</h4><p>Mouse Marauder</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage8.png" alt="Stage 8"><h4>Stage 8</h4><p>Monitor Menace</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage9.png" alt="Stage 9"><h4>Stage 9</h4><p>CPU Titan</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage10.png" alt="Stage 10"><h4>Stage 10</h4><p>AVR Avenger</p></div>
+                </div>
+                <h3 class="stage-group-title" style="color:var(--danger);"><i class="fas fa-skull-crossbones"></i> Stages 11-15: Typing Battle</h3>
+                <div class="monster-grid">
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage11.png" alt="Stage 11"><h4>Stage 11</h4><p>Keyword Corruptor</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage12.png" alt="Stage 12"><h4>Stage 12</h4><p>Method Destroyer</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage13.png" alt="Stage 13"><h4>Stage 13</h4><p>Collection Overlord</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage14.png" alt="Stage 14"><h4>Stage 14</h4><p>Concurrent Executor</p></div>
+                    <div class="monster-card" onclick="redirectToGame()"><img src="monsters/stage15.png" alt="Stage 15"><h4>Stage 15</h4><p>Lord of Java</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STORY ===== -->
+        <section id="story" class="section">
+            <div class="story-wrapper">
+                <div class="story-header">
+                    <div class="story-header-icon"><i class="fas fa-book-open"></i></div>
+                    <h2>The <span>Story</span> So Far</h2>
+                    <p>Follow the journey through 6 captivating chapters</p>
+                </div>
+                <div class="story-main-content">
+                    <div class="story-image-wrapper">
+                        <div class="story-image-container">
+                            <img id="storyImage" src="1.png" alt="Story Chapter" class="story-main-image" onerror="this.src='https://via.placeholder.com/800x400?text=Chapter+1'">
+                            <button class="story-arrow story-arrow-left" onclick="changeStory(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <button class="story-arrow story-arrow-right" onclick="changeStory(1)"><i class="fas fa-chevron-right"></i></button>
+                            <div class="story-chapter-badge" id="storyBadge"><i class="fas fa-bookmark"></i> Chapter 1</div>
+                        </div>
+                    </div>
+                    <div class="story-bottom-section">
+                        <div class="story-info" id="storyInfo">
+                            <h3 id="storyTitle"><i class="fas fa-feather-alt"></i> Chapter 1: The Beginning</h3>
+                            <p id="storyDescription">A mysterious spaceship entered Earth's atmosphere, marking the start of an epic adventure that would change everything.</p>
+                        </div>
+                        <div class="story-thumbnails-wrapper">
+                            <div class="story-thumbnails" id="storyThumbnails">
+                                <div class="story-thumbnail active" data-index="0" onclick="goToStory(0)"><span class="thumb-icon">🚀</span><span class="thumb-num">01</span><span class="thumb-label">Beginning</span></div>
+                                <div class="story-thumbnail" data-index="1" onclick="goToStory(1)"><span class="thumb-icon">🔍</span><span class="thumb-num">02</span><span class="thumb-label">Discovery</span></div>
+                                <div class="story-thumbnail" data-index="2" onclick="goToStory(2)"><span class="thumb-icon">⚔️</span><span class="thumb-num">03</span><span class="thumb-label">Challenge</span></div>
+                                <div class="story-thumbnail" data-index="3" onclick="goToStory(3)"><span class="thumb-icon">🏹</span><span class="thumb-num">04</span><span class="thumb-label">Battle</span></div>
+                                <div class="story-thumbnail" data-index="4" onclick="goToStory(4)"><span class="thumb-icon">🐉</span><span class="thumb-num">05</span><span class="thumb-label">Boss</span></div>
+                                <div class="story-thumbnail" data-index="5" onclick="goToStory(5)"><span class="thumb-icon">🏆</span><span class="thumb-num">06</span><span class="thumb-label">Victory</span></div>
+                            </div>
+                        </div>
+                        <div class="story-progress"><span id="storyCounter"><i class="fas fa-bookmark"></i> 1 / 6</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MORE ===== -->
+        <section id="more" class="section">
+            <div class="container">
+                <div class="section-header"><h2>More <span>About The Game</span></h2><p>Discover the purpose and mission</p></div>
+                <div class="goal-grid">
+                    <div>
+                        <h2>🎯 Main Goal</h2>
+                        <p>Designed for <strong style="color:var(--primary);">Computer Science students</strong> Learn computer hardware, software, and parts through interactive gameplay.</p>
+                        <div class="goal-highlight"><p><strong style="color:var(--accent);">Stages 11-15:</strong> Stages 11-15: Java Typing Battle where students type Java keywords, methods, and collections to enhance typing speed and Java familiarity.</p></div>
+                        <div class="goal-stats">
+                            <div class="goal-stat-item"><span class="goal-stat-number">5</span> Topics</div>
+                            <div class="goal-stat-item"><span class="goal-stat-number">1500</span> Questions</div>
+                            <div class="goal-stat-item"><span class="goal-stat-number">CS</span> Students</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mission-grid">
+                    <div class="mission-card"><div class="mission-icon"><i class="fas fa-graduation-cap"></i></div><h3>Educational</h3><p>Learn computer basics through quiz gameplay</p></div>
+                    <div class="mission-card"><div class="mission-icon"><i class="fas fa-keyboard"></i></div><h3>Typing Mastery</h3><p>Improve Java typing speed and accuracy</p></div>
+                    <div class="mission-card"><div class="mission-icon"><i class="fas fa-users"></i></div><h3>For CS Students</h3><p>created for Computer Science students of North Negros Collage</p></div>
+                </div>
+                <div class="learning-progress">
+                    <h3 style="text-align:center; color:var(--accent);"><i class="fas fa-chart-line"></i> What You'll Learn</h3>
+                    <div class="progress-label"><span>Hardware Knowledge</span><span>90%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width:90%;"></div></div>
+                    <div class="progress-label"><span>Software & OS</span><span>85%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width:85%;"></div></div>
+                    <div class="progress-label"><span>Computer Parts</span><span>95%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width:95%;"></div></div>
+                    <div class="progress-label"><span style="color:var(--accent);">TYPING MASTER</span><span style="color:var(--accent);">80%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width:80%; background:linear-gradient(90deg,var(--accent),#f39c12);"></div></div>
+                    <div style="text-align:center; margin-top:0.6rem;">
+                        <h4 style="color:var(--accent);">Java Keywords:</h4>
+                        <div class="knowledge-tags">
+                            <span class="knowledge-tag">public</span><span class="knowledge-tag">private</span><span class="knowledge-tag">static</span>
+                            <span class="knowledge-tag">ArrayList</span><span class="knowledge-tag">HashMap</span><span class="knowledge-tag">Thread</span>
+                            <span class="knowledge-tag">synchronized</span><span class="knowledge-tag">ExecutorService</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- ===== ABOUT ===== -->
+<section id="about" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>About <span>Us</span></h2>
+            <p>Meet the team behind Brainstorm Battle</p>
+        </div>
+        <div class="about-grid">
+            <!-- LEFT: Our Story -->
+            <div class="about-left">
+                <h3>Our Story</h3>
+                <p>A Software Engineering project created for Computer Science students of North Negros Collage. Combining education with entertainment.</p>
+                
+                <h4>Key Features:</h4>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> 15+ challenging stages</li>
+                    <li><i class="fas fa-check-circle"></i> 1500  Questions</li>
+                    <li><i class="fas fa-check-circle"></i> Catch The Pards mode</li>
+                    <li><i class="fas fa-check-circle"></i> Typing Battle</li>
+                    <li><i class="fas fa-check-circle"></i> Educational & entertaining</li>
+                </ul>
+                
+                <h4>Built With:</h4>
+                <div class="tech-stack">
+                    <div class="tech-card">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-js"></i>
+                        <span>JS</span>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-php"></i>
+                        <span>PHP</span>
+                    </div>
+                    <div class="tech-card mysql">
+                        <i class="fas fa-database"></i>
+                        <span>MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: The Team -->
+            <div class="about-right">
+                <h3>The Team</h3>
+                <p class="team-subtitle">Meet the developers behind Brainstorm Battle</p>
+                <div class="team-grid">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="Team/inoy.png" alt="Antonio Inoy" class="team-img-rect" onerror="this.style.display='none'">
+                        </div>
+                        <h4>Antonio Inoy</h4>
+                        <p>Lead Developer</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="Team/petalino.png" alt="Kyle Petalino" class="team-img-rect" onerror="this.style.display='none'">
+                        </div>
+                        <h4>Kyle Petalino</h4>
+                        <p>Backend Developer</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="Team/pastrana.png" alt="Kim Pastrana" class="team-img-rect" onerror="this.style.display='none'">
+                        </div>
+                        <h4>Kim Pastrana</h4>
+                        <p>Game Mechanic</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="Team/delacruz.png" alt="Abcde Dela Cruz" class="team-img-rect" onerror="this.style.display='none'">
+                        </div>
+                        <h4>Abcde Dela Cruz</h4>
+                        <p>UI Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    
+
+
+<!-- ============================================================ -->
+<!--  COLOR PALETTE VIEWER                                        -->
+<!-- ============================================================ -->
+
+<!-- Floating Toggle Button -->
+<button id="paletteToggleBtn" onclick="togglePalette()" title="View Color Palette">
+    <i class="fas fa-palette"></i>
+</button>
+
+<!-- Palette Panel -->
+<div id="palettePanel">
+    <div class="palette-header">
+        <h3><i class="fas fa-palette"></i> COLOR PALETTE</h3>
+        <button class="palette-close-btn" onclick="togglePalette()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <p class="palette-subtitle">Click any color to copy its hex code</p>
+
+    <div class="palette-item" onclick="copyColor(this, '#D174D2')">
+        <div class="palette-swatch" style="background: #D174D2;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Purple Light</div>
+            <span class="palette-hex">#D174D2</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#b158b2')">
+        <div class="palette-swatch" style="background: #b158b2;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Purple Dark</div>
+            <span class="palette-hex">#b158b2</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#412653')">
+        <div class="palette-swatch" style="background: #412653;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Purple Dark BG</div>
+            <span class="palette-hex">#412653</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#2e1a3a')">
+        <div class="palette-swatch" style="background: #2e1a3a;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Purple Darker</div>
+            <span class="palette-hex">#2e1a3a</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#1a0f1f')">
+        <div class="palette-swatch" style="background: #1a0f1f;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Body Black</div>
+            <span class="palette-hex">#1a0f1f</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#140b1c')">
+        <div class="palette-swatch" style="background: #140b1c;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Admin BG</div>
+            <span class="palette-hex">#140b1c</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#21152b')">
+        <div class="palette-swatch" style="background: #21152b;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Card BG</div>
+            <span class="palette-hex">#21152b</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#E0563F')">
+        <div class="palette-swatch" style="background: #E0563F;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Red</div>
+            <span class="palette-hex">#E0563F</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#3f567F')">
+        <div class="palette-swatch" style="background: #3f567F;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Blue</div>
+            <span class="palette-hex">#3f567F</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#f1c40f')">
+        <div class="palette-swatch" style="background: #f1c40f;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Yellow / Gold</div>
+            <span class="palette-hex">#f1c40f</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#2ecc71')">
+        <div class="palette-swatch" style="background: #2ecc71;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Green</div>
+            <span class="palette-hex">#2ecc71</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#e67e22')">
+        <div class="palette-swatch" style="background: #e67e22;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Orange</div>
+            <span class="palette-hex">#e67e22</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#FFFFFF')">
+        <div class="palette-swatch" style="background: #FFFFFF;"></div>
+        <div class="palette-info">
+            <div class="palette-name">White</div>
+            <span class="palette-hex">#FFFFFF</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#b0a8b8')">
+        <div class="palette-swatch" style="background: #b0a8b8;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Text Gray</div>
+            <span class="palette-hex">#b0a8b8</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#bdc3c7')">
+        <div class="palette-swatch" style="background: #bdc3c7;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Silver</div>
+            <span class="palette-hex">#bdc3c7</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#ff4757')">
+        <div class="palette-swatch" style="background: #ff4757;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Neon Red</div>
+            <span class="palette-hex">#ff4757</span>
+        </div>
+    </div>
+    
+    <div class="palette-item" onclick="copyColor(this, '#ff6b9d')">
+        <div class="palette-swatch" style="background: #ff6b9d;"></div>
+        <div class="palette-info">
+            <div class="palette-name">Neon Pink</div>
+            <span class="palette-hex">#ff6b9d</span>
+        </div>
+    </div>
+
+    <div class="palette-footer">
+        🎨 Brainstorm Battle · Color Palette
+    </div>
+</div>
+
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+
+
+
+
+
+// ============================================================
+//  FOLLOWER CIRCLE - MOUSE INSIDE (CENTERED)
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const circle = document.getElementById('followerCircle');
+    
+    // Check if touch device
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    
+    if (isTouchDevice) {
+        circle.style.display = 'none';
+        return;
+    }
+    
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let clickTimer = null;
+    
+    // Track mouse position
+    document.addEventListener('mousemove', function(e) {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        
+        if (circle.classList.contains('hidden')) {
+            circle.classList.remove('hidden');
+        }
+    });
+    
+    // Smooth follow with 1 second delay
+    function followMouse() {
+        currentX += (targetX - currentX) * 0.10 ;
+        currentY += (targetY - currentY) * 0.10;
+        
+        // ITO ANG SUSI - gamit ang transform para centered
+        circle.style.left = currentX + 'px';
+        circle.style.top = currentY + 'px';
+        
+        requestAnimationFrame(followMouse);
+    }
+    
+    followMouse();
+    
+    // Click effect
+    document.addEventListener('mousedown', function() {
+        circle.classList.add('clicking');
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(function() {
+            circle.classList.remove('clicking');
+        }, 300);
+    });
+    
+    document.addEventListener('mouseup', function() {
+        circle.classList.remove('clicking');
+    });
+    
+    // Hide when mouse leaves
+    document.addEventListener('mouseleave', function() {
+        circle.classList.add('hidden');
+    });
+    
+    document.addEventListener('mouseenter', function() {
+        circle.classList.remove('hidden');
+    });
+    
+    // Hover effect on interactive elements
+    const hoverElements = document.querySelectorAll('button, a, input, .btn, .menu-btn, .category-btn, .logo, .nav-link');
+    
+    hoverElements.forEach(function(el) {
+        el.addEventListener('mouseenter', function() {
+            circle.classList.add('active');
+        });
+        el.addEventListener('mouseleave', function() {
+            circle.classList.remove('active');
+        });
+    });
+    
+    console.log('🎯 Follower Circle - Mouse Inside (Centered)');
+});
+
+        
+
+// ============================================================
+//  3-CLICK LOGO - PUNTA SA ADMIN LOGIN
+// ============================================================
+var logoClickCount = 0;
+var logoClickTimer = null;
+
+function goToAdmin() {
+    logoClickCount++;
+    console.log('🔐 Logo clicked: ' + logoClickCount + '/3');
+    
+    // Reset count after 3 seconds of no click
+    clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(function() {
+        logoClickCount = 0;
+        console.log('⏰ Click count reset');
+    }, 3000);
+    
+    // If 3 clicks, redirect
+    if (logoClickCount >= 3) {
+        logoClickCount = 0;
+        clearTimeout(logoClickTimer);
+        console.log('🎯 3 clicks detected! Redirecting to admin...');
+        // ⭐ DYNAMIC URL — auto-detect IP
+var adminUrl = window.location.protocol + '//' + window.location.hostname + 
+               (window.location.port ? ':' + window.location.port : '') + 
+               '/game_login/admin_form/admin_login.html';
+
+console.log('🔐 Opening admin:', adminUrl);
+window.location.href = adminUrl;
+    }
+}
+
+// ============================================================
+//  NAVIGATION FUNCTIONS
+// ============================================================
+
+function toggleMenu() {
+    var navLinks = document.getElementById('navLinks');
+    if (navLinks) {
+        navLinks.classList.toggle('active');
+    }
+}
+
+function showSection(sectionId) {
+    // I-hide lahat ng sections
+    var sections = document.querySelectorAll('.section');
+    sections.forEach(function(s) {
+        s.classList.remove('active-section');
+    });
+    
+    // I-show ang selected section
+    var target = document.getElementById(sectionId);
+    if (target) {
+        target.classList.add('active-section');
+    }
+    
+    // I-update ang active nav link
+    var navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(function(l) {
+        l.classList.remove('active');
+    });
+    
+    // Hanapin ang nav link na may matching onclick
+    var activeLink = document.querySelector('.nav-link[onclick*="' + sectionId + '"]');
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+    
+    // Isara ang mobile menu
+    var mobileMenu = document.getElementById('navLinks');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('active');
+    }
+    
+    // Scroll sa taas
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+
+// ===== REDIRECT TO GAME =====
+function redirectToGame() {
+    window.location.href = "../index.html";
+}
+
+// ============================================================
+//  VIDEO + MUSIC - NAKA-MUTE SA SIMULA
+// ============================================================
+
+const bgVideo = document.getElementById('bgVideo');
+const bgAudio = document.getElementById('bgAudio');
+
+// ===== VIDEO - MUTED PARA MAG-AUTOPLAY =====
+if (bgVideo) {
+    bgVideo.loop = true;
+    bgVideo.muted = true;
+    bgVideo.preload = 'auto';
+    bgVideo.playsInline = true;
+    bgVideo.volume = 0;
+    
+    function startVideo() {
+        bgVideo.play().then(function() {
+            console.log('✅ Video playing (looping)');
+        }).catch(function(e) {
+            console.log('⚠️ Video error:', e);
+            setTimeout(startVideo, 500);
+        });
+    }
+    
+    startVideo();
+    
+    bgVideo.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play().catch(function() {});
+    });
+}
+
+// ===== AUDIO - NAKA-MUTE SA SIMULA =====
+if (bgAudio) {
+    bgAudio.loop = true;
+    bgAudio.preload = 'auto';
+    bgAudio.volume = 0.3;
+    
+    
+    // I-load lang ang audio (hindi pa nagpe-play)
+    bgAudio.load();
+    
+    // SIGURADUHIN MAG-LOOP
+    bgAudio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play().catch(function() {});
+    });
+}
+
+// ============================================================
+//  MUTE BUTTON - MAG-TOGGLE NG MUSIC
+// ============================================================
+let isMuted = true; // NAKA-MUTE SA SIMULA
+
+function toggleMute() {
+    const btn = document.getElementById('muteBtn');
+    if (!btn || !bgAudio) return;
+    
+    const icon = btn.querySelector('i');
+    
+    isMuted = !isMuted;
+    
+    if (isMuted) {
+        // MUTE - STOP MUSIC
+        
+        bgAudio.pause();
+        if (icon) {
+            icon.className = 'fas fa-volume-mute'; // MUTED ICON
+        }
+        btn.style.borderColor = 'rgba(255,255,255,0.2)';
+        console.log('🔇 Music muted');
+    } else {
+        // UNMUTE - PLAY MUSIC
+        bgAudio.muted = false;
+        bgAudio.play().then(function() {
+            console.log('🔊 Music playing!');
+        }).catch(function(error) {
+            console.log('⚠️ Audio play error:', error);
+        });
+        if (icon) {
+            icon.className = 'fas fa-volume-up'; // UNMUTED ICON
+        }
+        btn.style.borderColor = '#D174D2';
+        console.log('🔊 Music unmuted');
+    }
+    
+    localStorage.setItem('audio_muted', isMuted ? 'true' : 'false');
+}
+
+function loadMuteState() {
+    const saved = localStorage.getItem('audio_muted');
+    // Default: muted (true)
+    if (saved === 'false') {
+        // Kung dati naka-unmute
+        isMuted = false;
+        if (bgAudio) {
+            bgAudio.muted = false;
+            bgAudio.play().catch(function() {});
+        }
+        const btn = document.getElementById('muteBtn');
+        if (btn) {
+            const icon = btn.querySelector('i');
+            if (icon) icon.className = 'fas fa-volume-up';
+            btn.style.borderColor = '#D174D2';
+        }
+    } else {
+        // Default: muted (nakamute sa simula)
+        isMuted = true;
+        if (bgAudio) {
+            
+        }
+        const btn = document.getElementById('muteBtn');
+        if (btn) {
+            const icon = btn.querySelector('i');
+            if (icon) icon.className = 'fas fa-volume-mute'; // MUTED ICON
+            btn.style.borderColor = 'rgba(255,255,255,0.2)';
+        }
+    }
+}
+
+
+
+
+
+// ============================================================
+//  STORY
+// ============================================================
+let currentStoryIndex = 0;
+const storyData = [
+    { title: "Chapter 1: The Beginning", desc: "A mysterious spaceship entered Earth's atmosphere, marking the start of an epic adventure that would change everything.", badge: "Chapter 1" },
+    { title: "Chapter 2: The Discovery", desc: "The crew discovered an ancient artifact hidden deep within the ship, containing secrets of a lost civilization.", badge: "Chapter 2" },
+    { title: "Chapter 3: The Challenge", desc: "Monsters emerged from the shadows, testing the crew's courage and skills in battle.", badge: "Chapter 3" },
+    { title: "Chapter 4: The Battle", desc: "The fight for survival begins as the crew faces waves of enemies in the arena.", badge: "Chapter 4" },
+    { title: "Chapter 5: The Boss", desc: "A powerful enemy stands in your way. Only the strongest will prevail in this epic showdown.", badge: "Chapter 5" },
+    { title: "Chapter 6: The Victory", desc: "The final battle to save the world. Victory is within reach if you have the courage to fight.", badge: "Chapter 6" }
+];
+
+function changeStory(direction) {
+    let newIndex = currentStoryIndex + direction;
+    if (newIndex < 0) newIndex = storyData.length - 1;
+    else if (newIndex >= storyData.length) newIndex = 0;
+    currentStoryIndex = newIndex;
+    updateStoryDisplay();
+}
+
+function goToStory(index) {
+    if (index >= 0 && index < storyData.length) {
+        currentStoryIndex = index;
+        updateStoryDisplay();
+    }
+}
+
+function updateStoryDisplay() {
+    const story = storyData[currentStoryIndex];
+    const img = document.getElementById('storyImage');
+    if (img) {
+        img.src = (currentStoryIndex + 1) + '.png';
+        img.alt = story.title;
+        img.onerror = function() {
+            this.src = 'https://via.placeholder.com/800x400?text=' + encodeURIComponent(story.title);
+        };
+    }
+    const titleEl = document.getElementById('storyTitle');
+    if (titleEl) titleEl.innerHTML = `<i class="fas fa-feather-alt"></i> ${story.title}`;
+    const descEl = document.getElementById('storyDescription');
+    if (descEl) descEl.textContent = story.desc;
+    const counterEl = document.getElementById('storyCounter');
+    if (counterEl) counterEl.innerHTML = `<i class="fas fa-bookmark"></i> ${currentStoryIndex + 1} / ${storyData.length}`;
+    const badgeEl = document.getElementById('storyBadge');
+    if (badgeEl) badgeEl.innerHTML = `<i class="fas fa-bookmark"></i> ${story.badge || 'Chapter ' + (currentStoryIndex + 1)}`;
+    document.querySelectorAll('.story-thumbnail').forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === currentStoryIndex);
+    });
+}
+
+// ===== KEYBOARD NAVIGATION =====
+document.addEventListener('keydown', function(e) {
+    const storySection = document.getElementById('story');
+    if (storySection && storySection.classList.contains('active-section')) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); changeStory(-1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); changeStory(1); }
+    }
+});
+
+// ===== AUTO-PLAY STORY =====
+let storyAutoPlay = null;
+function startStoryAutoPlay() {
+    stopStoryAutoPlay();
+    storyAutoPlay = setInterval(function() {
+        const storySection = document.getElementById('story');
+        if (storySection && storySection.classList.contains('active-section')) {
+            changeStory(1);
+        }
+    }, 8000);
+}
+function stopStoryAutoPlay() {
+    if (storyAutoPlay) { clearInterval(storyAutoPlay); storyAutoPlay = null; }
+}
+
+// ===== FEATURED TABS =====
+function switchTab(tab) {
+    document.querySelectorAll('.featured-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('quiz-content').style.display = 'none';
+    document.getElementById('combat-content').style.display = 'none';
+    document.getElementById('boss-content').style.display = 'none';
+    document.getElementById('map-content').style.display = 'none';
+    document.getElementById(tab + '-content').style.display = 'block';
+}
+
+// ===== QUIZ =====
+const quizData = [
+    { q: "What does CPU stand for?", opts: ["Central Processing Unit", "Computer Personal Unit", "Central Power Unit", "Core Processing Unit"], correct: 0 },
+    { q: "What does RAM stand for?", opts: ["Random Access Memory", "Read Only Memory", "Rapid Action Module", "Runtime Memory"], correct: 0 },
+    { q: "Which is the brain of the computer?", opts: ["CPU", "RAM", "Hard Drive", "Motherboard"], correct: 0 },
+    { q: "What does HDD stand for?", opts: ["Hard Disk Drive", "High Definition Display", "Hardware Data Driver", "Hybrid Digital Drive"], correct: 0 },
+    { q: "Function of motherboard?", opts: ["Connect components", "Process data", "Store files", "Supply power"], correct: 0 }
+];
+let currentQ = 0, score = 0, answered = false;
+
+function loadQuiz() {
+    const q = quizData[currentQ];
+    document.getElementById('quizQuestion').textContent = q.q;
+    document.getElementById('currentStage').textContent = currentQ + 1;
+    let html = '';
+    q.opts.forEach((opt, i) => {
+        html += `<div class="option-item" onclick="checkAnswer(${i})">
+                    <span class="option-prefix">${String.fromCharCode(65+i)}</span>
+                    <span>${opt}</span>
+                </div>`;
+    });
+    document.getElementById('quizOptions').innerHTML = html;
+    document.getElementById('quizProgress').style.width = ((currentQ + 1) / quizData.length * 100) + '%';
+    document.getElementById('prevBtn').disabled = currentQ === 0;
+    document.getElementById('quizResult').style.display = 'none';
+    answered = false;
+}
+
+function checkAnswer(selected) {
+    if (answered) return;
+    const correct = selected === quizData[currentQ].correct;
+    const opts = document.querySelectorAll('.option-item');
+    if (correct) { opts[selected].classList.add('correct'); score += 20; }
+    else { opts[selected].classList.add('wrong'); opts[quizData[currentQ].correct].classList.add('correct'); }
+    document.getElementById('quizResult').style.display = 'block';
+    document.getElementById('quizResult').innerHTML = correct ? '✅ Correct! +20 points' : '❌ Wrong!';
+    document.getElementById('quizScore').textContent = 'Score: ' + score + '/100';
+    answered = true;
+}
+
+function nextQuestion() {
+    if (currentQ < quizData.length - 1) { currentQ++; loadQuiz(); }
+    else alert('Quiz completed! Score: ' + score + '/100');
+}
+
+function prevQuestion() {
+    if (currentQ > 0) { currentQ--; loadQuiz(); }
+}
+loadQuiz();
+
+// ===== COMBAT =====
+let playerHP = 85, enemyHP = 100;
+function attack(type) {
+    if (enemyHP <= 0 || playerHP <= 0) { resetCombat(); return; }
+    let damage = type === 'light' ? 10 : type === 'heavy' ? 20 : 30;
+    enemyHP = Math.max(0, enemyHP - damage);
+    document.getElementById('enemyHealth').style.width = enemyHP + '%';
+    document.getElementById('enemyHp').textContent = enemyHP;
+    if (enemyHP <= 0) setTimeout(() => { alert('Victory!'); resetCombat(); }, 200);
+}
+function resetCombat() {
+    playerHP = 85; enemyHP = 100;
+    document.getElementById('playerHealth').style.width = '85%';
+    document.getElementById('enemyHealth').style.width = '100%';
+    document.getElementById('playerHp').textContent = '85';
+    document.getElementById('enemyHp').textContent = '100';
+}
+
+// ===== BOSS PHASES =====
+function showPhase(stage, el) {
+    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    const titles = ['Basic Java Keywords', 'Java Methods', 'Java Collections', 'Advanced Java', 'Final Boss'];
+    const descs = ['Type 15 keywords. Reach 10 RPM.', 'Type 18 methods. Reach 15 RPM.', 'Type 20 collections. Reach 20 RPM.', 'Type 22 concepts. Reach 25 RPM.', 'Type 25 terms. Reach 30 RPM.'];
+    document.getElementById('mechanicTitle').textContent = 'Stage ' + stage + ': ' + titles[stage - 11];
+    document.getElementById('mechanicDesc').textContent = descs[stage - 11];
+}
+
+
+// ===== INIT =====
+updateStoryDisplay();
+
+
+const storySection = document.getElementById('story');
+if (storySection && storySection.classList.contains('active-section')) {
+    startStoryAutoPlay();
+}
+
+loadMuteState();
+
+// ============================================================
+//  COLOR PALETTE VIEWER
+// ============================================================
+function togglePalette() {
+    const panel = document.getElementById('palettePanel');
+    const btn = document.getElementById('paletteToggleBtn');
+    
+    panel.classList.toggle('open');
+    btn.classList.toggle('active');
+    
+    if (panel.classList.contains('open')) {
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        console.log('🎨 Color palette opened');
+    } else {
+        btn.innerHTML = '<i class="fas fa-palette"></i>';
+        console.log('🎨 Color palette closed');
+    }
+}
+
+function copyColor(element, hex) {
+    // Copy to clipboard
+    navigator.clipboard.writeText(hex).then(function() {
+        // Visual feedback
+        element.classList.add('copied');
+        
+        // Remove after 1.5 seconds
+        setTimeout(function() {
+            element.classList.remove('copied');
+        }, 1500);
+        
+        console.log('📋 Copied: ' + hex);
+    }).catch(function(err) {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = hex;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        element.classList.add('copied');
+        setTimeout(function() {
+            element.classList.remove('copied');
+        }, 1500);
+        
+        console.log('📋 Copied (fallback): ' + hex);
+    });
+}
+
+// Close palette when clicking outside
+document.addEventListener('click', function(e) {
+    const panel = document.getElementById('palettePanel');
+    const btn = document.getElementById('paletteToggleBtn');
+    
+    if (!panel || !btn) return;
+    
+    if (panel.classList.contains('open') && 
+        !panel.contains(e.target) && 
+        !btn.contains(e.target)) {
+        panel.classList.remove('open');
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fas fa-palette"></i>';
+    }
+});
+
+
+// ============================================================
+//  HOME VIDEO - PLAY ON HOVER (BULLETPROOF VERSION)
+// ============================================================
+
+// ⭐ GLOBAL FUNCTIONS — tinatawag ng HTML onmouseenter/onmouseleave
+function playHomeVideo() {
+    var video = document.getElementById('homeVideo');
+    if (!video) return;
+    
+    video.muted = true;        // ⭐ SIGURADUHIN NAKA-MUTE (kailangan para autoplay)
+    video.loop = true;
+    video.playsInline = true;
+    
+    var playPromise = video.play();
+    if (playPromise !== undefined) {
+        playPromise.then(function() {
+            console.log('▶️ Video playing');
+        }).catch(function(error) {
+            console.log('⚠️ Play error:', error);
+            // Force retry
+            setTimeout(function() {
+                video.play().catch(function(){});
+            }, 100);
+        });
+    }
+}
+
+function stopHomeVideo() {
+    var video = document.getElementById('homeVideo');
+    if (!video) return;
+    
+    video.pause();
+    video.currentTime = 0;
+    console.log('⏹️ Video stopped');
+}
+
+// ============================================================
+//  INIT — tanggalin ang browser controls
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('homeVideo');
+    if (!video) return;
+    
+    video.removeAttribute('controls');
+    video.controls = false;
+    video.disablePictureInPicture = true;
+    video.disableRemotePlayback = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    
+    console.log('✅ Home video ready — hover to play');
+});
+
+
+
+
+
+// Close palette with ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const panel = document.getElementById('palettePanel');
+        const btn = document.getElementById('paletteToggleBtn');
+        
+        if (panel && panel.classList.contains('open')) {
+            panel.classList.remove('open');
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="fas fa-palette"></i>';
+        }
+    }
+});
+
+console.log('🎨 Color Palette Viewer loaded!');
+console.log('✅ Website ready - Music is muted by default. Click the mute button to play music!');
+    </script>
+</body>
+</html> 
